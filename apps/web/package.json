@@ -8,9 +8,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --max-warnings 0",
-    "check-types": "next typegen && tsc --noEmit"
+    "check-types": "next typegen && tsc --noEmit",
+    "prisma:generate": "prisma generate --schema=../api/prisma/schema.prisma",
+    "prisma:migrate:dev": "prisma migrate dev --schema=../api/prisma/schema.prisma",
+    "prisma:migrate:deploy": "prisma migrate deploy --schema=../api/prisma/schema.prisma",
+    "prisma:studio": "prisma studio --schema=../api/prisma/schema.prisma"
   },
   "dependencies": {
+    "@prisma/client": "^6.19.2",
     "@repo/ui": "*",
     "next": "16.1.0",
     "react": "^19.2.0",
@@ -23,6 +28,7 @@
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "eslint": "^9.39.1",
+    "prisma": "^6.19.2",
     "typescript": "5.9.2"
   }
 }
