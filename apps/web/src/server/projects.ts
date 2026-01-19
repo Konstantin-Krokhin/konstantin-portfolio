@@ -5,5 +5,5 @@ export async function listProjects() {
 }
 
 export async function getProjectBySlug(slug: string) {
-	return prisma.project.fundUnique({ where: { slug } });
+	return prisma.project.findUnique({ where: { slug } });
 }
