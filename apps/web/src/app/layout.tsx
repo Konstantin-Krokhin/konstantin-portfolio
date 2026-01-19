@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Link from "next/link"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,7 +28,7 @@ export default function RootLayout({
 
         <header className = "border-b border-zinc-800">
           <div className="mx-auto max-w-6xl px-6 py-6 flex items-center justify-between">
-            <a href="/" className="font-semibold text-zinc-100"> Konstantin </a>
+            <Link href="/" className="font-semibold text-zinc-100"> Konstantin </Link>
 
             <nav className="flex gap-4 text-sm text-zinc-300">
               <a href="https://github.com/Konstantin-Krokhin" target="_blank" rel="noreferrer">
@@ -40,7 +41,9 @@ export default function RootLayout({
           </div>
         </header>
 
-        {children}
+        <main className="mx-auto max-w-6xl px-6 py-10">
+          {children}
+        </main>
 
         <footer className="border-t border-zinc-800 mt-12">
           <div className="mx-auto max-w-6xl px-6 py-6 text-sm text-zinc-400">

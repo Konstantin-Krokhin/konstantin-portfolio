@@ -1,4 +1,5 @@
 import { listProjects } from "@/server/projects";
+import Link from "next/link";
 
 type Project = Awaited<ReturnType<typeof listProjects>>[number];
 
@@ -6,7 +7,7 @@ export default async function Home() {
   const projects: Project[] = await listProjects();
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100">
       {/* background glow */}
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute left-[-200px] top-[-200px] h-[500px] w-[500px] rounded-full bg-indigo-500/15 blur-3xl" />
@@ -57,12 +58,12 @@ export default async function Home() {
                   <h3 className="text-base font-semibold leading-snug">{p.title}</h3>
 
                   {p.slug ? (
-                    <a
+                    <Link
                       href={`/projects/${p.slug}`}
                       className="rounded-lg border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-xs text-zinc-200 transition hover:border-zinc-700 hover:text-white"
                     >
                       Open
-                    </a>
+                    </Link>
                   ) : null}
                 </div>
 
@@ -94,6 +95,6 @@ export default async function Home() {
           </div>
         </section>
       </div>
-    </main>
+    </div>
   );
 }
