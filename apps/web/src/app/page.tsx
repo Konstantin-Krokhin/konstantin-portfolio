@@ -16,28 +16,6 @@ export default async function Home() {
 
       <div className="mx-auto max-w-6xl px-6 py-14">
         <header className="space-y-6">
-          <section className="mt-16 grid gap-4 sm:grid-cols-3">
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-5">
-              <p className="text-xs uppercase tracking-wide text-zinc-400">What I build</p>
-              <p className="mt-2 text-sm text-zinc-200">
-                Full-stack apps with Next.js, Prisma, and Postgres - designed to ship and scale.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-5">
-              <p className="text-xs uppercase tracking-wide text-zinc-400">What I care about</p>
-              <p className="mt-2 text-sm text-zinc-200">
-                Clean architecture, reliability, security mindset, and developer experience.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-5">
-              <p className="text-xs uppercase tracking-wide text-zinc-400">Open to</p>
-              <p className="mt-2 text-sm text-zinc-200">
-                Full-stack roles, backend-heavy work, and contract projects. Toronto / remote.
-              </p>
-            </div>
-          </section>
 
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
             Hi, I&apos;m Konstantin.
@@ -62,6 +40,29 @@ export default async function Home() {
             </span>
           </div>
         </header>
+
+        <section className="mt-16 grid gap-4 sm:grid-cols-3">
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-5">
+              <p className="text-xs uppercase tracking-wide text-zinc-400">What I build</p>
+              <p className="mt-2 text-sm text-zinc-200">
+                Full-stack apps with Next.js, Prisma, and Postgres - designed to ship and scale.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-5">
+              <p className="text-xs uppercase tracking-wide text-zinc-400">What I care about</p>
+              <p className="mt-2 text-sm text-zinc-200">
+                Clean architecture, reliability, security mindset, and developer experience.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-5">
+              <p className="text-xs uppercase tracking-wide text-zinc-400">Open to</p>
+              <p className="mt-2 text-sm text-zinc-200">
+                Full-stack roles, backend-heavy work, and contract projects. Toronto / remote.
+              </p>
+            </div>
+          </section>
 
         <section className="mt-20">
           <div className="mb-6 h-px bg-gradient-to-r from-transparent via-zinc-700/40 to-transparent" />

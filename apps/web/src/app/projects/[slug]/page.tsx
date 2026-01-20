@@ -2,9 +2,12 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getProjectBySlug } from "@/server/projects";
 
-export default async function ProjectPage({ params }: { params: Promise <{ slug: string }>; })
-{
-	const { slug } = await params
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
 
 	if (!slug) return notFound();
 
@@ -34,20 +37,24 @@ export default async function ProjectPage({ params }: { params: Promise <{ slug:
 				)
 			}
 
-			{
-				project.techStack ? (
-					<div>
-						{
-							project.techStack.split(",").map(t => t.trim()).filter(Boolean).slice(0, 10)
-							.map(tag => (
-							<span key={tag} 
-							className="rounded-full border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[11px] text-zinc-300">
-								{tag}
-								</span>))
-						}
-					</div>
-				) : null
-			}
+			{project.techStack ? (
+				<div className="mt-4 flex flex-wrap gap-2">
+					{project.techStack
+					.split(",")
+					.map((t) => t.trim())
+					.filter(Boolean)
+					.slice(0, 10)
+					.map((tag) => (
+						<span
+						key={tag}
+						className="rounded-full border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[11px] text-zinc-300"
+						>
+						{tag}
+						</span>
+					))}
+				</div>
+			) : null}
+
 
 			<div className="mt-6 flex flex-wrap gap-3">
 				{project.repoUrl ? (
