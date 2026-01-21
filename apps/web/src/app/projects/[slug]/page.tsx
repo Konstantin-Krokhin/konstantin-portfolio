@@ -41,7 +41,7 @@ export default async function ProjectPage({
 				<div className="mt-4 flex flex-wrap gap-2">
 					{project.techStack
 					.split(",")
-					.map((t) => t.trim())
+					.map((t: string) => t.trim())
 					.filter(Boolean)
 					.slice(0, 10)
 					.map((tag) => (
