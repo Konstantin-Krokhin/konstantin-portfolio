@@ -6,6 +6,8 @@ type Project = Awaited<ReturnType<typeof listProjects>>[number];
 export default async function Home() {
   const projects: Project[] = await listProjects();
 
+  console.log("HAS_DB_URL", !!process.env.DATABASE_URL);
+
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100">
       {/* background glow */}

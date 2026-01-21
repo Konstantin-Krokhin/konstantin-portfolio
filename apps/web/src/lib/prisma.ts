@@ -24,5 +24,7 @@ export const prisma =
 		log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
 	});
 
+console.log("DB_HOST", process.env.DATABASE_URL ? new URL(process.env.DATABASE_URL).host : "MISSING");
+
 // Cache the client only in development (hot reload protection)
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;

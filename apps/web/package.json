@@ -5,9 +5,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port 3000",
-    "build": "next build",
+    "build": "prisma generate --schema=../api/prisma/schema.prisma && next build",
     "start": "next start",
-    "lint": "eslint --max-warnings 0",
+    "lint": "next lint",
     "check-types": "next typegen && tsc --noEmit",
     "prisma:generate": "prisma generate --schema=../api/prisma/schema.prisma",
     "prisma:migrate:dev": "prisma migrate dev --schema=../api/prisma/schema.prisma",
