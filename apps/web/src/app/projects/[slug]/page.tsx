@@ -44,7 +44,7 @@ export default async function ProjectPage({
 					.map((t: string) => t.trim())
 					.filter(Boolean)
 					.slice(0, 10)
-					.map((tag) => (
+					.map((tag: string) => (
 						<span
 						key={tag}
 						className="rounded-full border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[11px] text-zinc-300"
