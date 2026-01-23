@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
 
         <header className = "border-b border-zinc-800">
-          <div className="mx-auto max-w-6xl px-6 py-6 flex items-center justify-between">
+          <div className="px-6 py-6 flex items-center justify-between">
             <Link href="/" className="font-semibold text-zinc-100"> Konstantin </Link>
 
             <nav className="flex gap-4 text-sm text-zinc-300">
@@ -41,12 +41,12 @@ export default function RootLayout({
           </div>
         </header>
 
-        <main className="mx-auto max-w-6xl px-6 py-10">
+        <main className="py-14">
           {children}
         </main>
 
         <footer className="border-t border-zinc-800 mt-12">
-          <div className="mx-auto max-w-6xl px-6 py-6 text-sm text-zinc-400">
+          <div className="px-6 py-6 text-sm text-zinc-400">
             © {new Date().getFullYear()} Konstantin Solutions
           </div>
         </footer>
