@@ -3,85 +3,80 @@ import Link from "next/link";
 
 type Project = Awaited<ReturnType<typeof listProjects>>[number];
 
+const card = "rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6";
+const pill = "rounded-full border border-zinc-800 bg-zinc-900/40 px-3 py-1 text-xs text-zinc-300 p-1.5";
+const tag = "rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-[11px] text-zinc-300";
+
 export default async function Home() {
   const projects: Project[] = await listProjects();
 
   return (
     <>
+    <div className="space-y-12">
       {/* background glow */}
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute left-[-200px] top-[-200px] h-[500px] w-[500px] rounded-full bg-indigo-500/15 blur-3xl" />
         <div className="absolute right-[-200px] top-[150px] h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-3xl" />
       </div>
 
-      <div className="px-6 py-8">
-        <header className="space-y-8 text-center">
+      <section className="flex flex-col lg:flex-row">
+        <div className="lg:flex-1 space-y-8">
 
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl text-center">
             Hi, I&apos;m Konstantin.
           </h1>
 
-          <p className="text-sm text-zinc-400">konstantinsolutions.tech</p>
+          <p className="text-sm text-zinc-400 text-center">konstantinsolutions.tech</p>
 
-          <p className="max-w-3xl text-lg text-zinc-300 mx-auto leading-relaxed">
+          <p className="text-lg text-zinc-300 leading-relaxed mx-auto lg:mx-0 text-center">
             I build production-style full-stack apps with Next.js, Prisma and Postgres,
             focusing on clean architecture, testing, and deployability.
           </p>
 
-          <div className="flex flex-wrap gap-2 pt-4 justify-center">
-            <span className="rounded-full border border-zinc-800 bg-zinc-900/40 px-3 py-1 text-xs text-zinc-300">
-              Next.js
-            </span>
-            <span className="rounded-full border border-zinc-800 bg-zinc-900/40 px-3 py-1 text-xs text-zinc-300">
-              Prisma
-            </span>
-            <span className="rounded-full border border-zinc-800 bg-zinc-900/40 px-3 py-1 text-xs text-zinc-300">
-              Neon Postgres
-            </span>
+          <div className="flex flex-wrap gap-2 justify-center justify-center">
+            <span className={pill}>Next.js</span>
+            <span className={pill}>Prisma</span>
+            <span className={pill}>Neon Postgres</span>
           </div>
-        </header>
+        </div>
 
-        <section className="mt-20 grid gap-6 sm:grid-cols-3">
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6">
-              <p className="text-xs uppercase tracking-wide text-zinc-400">What I build</p>
-              <p className="mt-3 text-sm text-zinc-200 leading-relaxed">
-                Full-stack apps with Next.js, Prisma, and Postgres - designed to ship and scale.
-              </p>
-            </div>
+        <div className="lg:w-50 space-y-4">
+          <div className={card}>
+            <p className="text-xs uppercase tracking-wide text-zinc-400">What I build</p>
+            <p className="mt-3 text-sm text-zinc-200 leading-relaxed">
+              Full-stack apps with Next.js, Prisma, and Postgres - designed to ship and scale.
+            </p>
+          </div>
 
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6">
-              <p className="text-xs uppercase tracking-wide text-zinc-400">What I care about</p>
-              <p className="mt-3 text-sm text-zinc-200 leading-relaxed">
-                Clean architecture, reliability, security mindset, and developer experience.
-              </p>
-            </div>
+          <div className={card}>
+            <p className="text-xs uppercase tracking-wide text-zinc-400">What I care about</p>
+            <p className="mt-3 text-sm text-zinc-200 leading-relaxed">
+              Clean architecture, reliability, security mindset, and developer experience.
+            </p>
+          </div>
 
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6">
-              <p className="text-xs uppercase tracking-wide text-zinc-400">Open to</p>
-              <p className="mt-3 text-sm text-zinc-200 leading-relaxed">
-                Full-stack roles, backend-heavy work, and contract projects. Toronto / remote.
-              </p>
-            </div>
-          </section>
+          <div className={card}>
+            <p className="text-xs uppercase tracking-wide text-zinc-400">Open to</p>
+            <p className="mt-3 text-sm text-zinc-200 leading-relaxed">
+              Full-stack roles, backend-heavy work, and contract projects. Toronto / remote.
+            </p>
+          </div>
+        </div>
+      </section>
 
-        <section className="mt-24">
-          <div className="mb-8 h-px bg-gradient-to-r from-transparent via-zinc-700/40 to-transparent" />
-
-          <div className="flex items-end justify-between">
+        <section>
+          
+          <div className="mb-6 flex items-end justify-between">
             <h2 className="text-xl font-semibold tracking-tight">Projects</h2>
             <span className="text-sm text-zinc-400">{projects.length} total</span>
           </div>
 
-          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-12 lg:grid-cols-4">
             {projects.map((p: any) => (
-              <article
-                key={p.id}
-                className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] transition hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/50"
-              >
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 transition group-hover:opacity-100" />
+              <article key={p.id} className={`${card} transition hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/40`}>
 
                 <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-base font-semibold leading-snug group-hover:text-white transition">{p.title}</h3>
+                  <h3 className="text-base font-semibold leading-snug">{p.title}</h3>
 
                   {p.slug ? (
                       <Link
@@ -107,12 +102,12 @@ export default async function Home() {
                     .map((t: string) => t.trim())
                     .filter(Boolean)
                     .slice(0, 6)
-                    .map((tag: string) => (
+                    .map((t: string) => (
                       <span
-                        key={tag}
-                        className="rounded-full border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[11px] text-zinc-300"
+                        key={t}
+                        className={tag}
                       >
-                        {tag}
+                        {t}
                       </span>
                     ))}
                 </div>

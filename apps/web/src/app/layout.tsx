@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   description: "Production-style full-stack apps with Next.js, Prisma, and Neon Postgres.",
 };
 
+const container = "mx-auto max-x-7xl px-6";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -24,29 +26,35 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
+      <body
+        className={[
+          geistSans.variable,
+          geistMono.variable,
+          "min-h-screen bg-zinc-950 text-zinc-100 font-sans antialiased flex flex-col",
+        ].join(" ")}
+      >
 
         <header className = "border-b border-zinc-800">
-          <div className="px-6 py-6 flex items-center justify-between">
-            <Link href="/" className="font-semibold text-zinc-100"> Konstantin </Link>
+          <div className={`${container} flex items-center justify-between py-4`}>
+            <Link href="/" className="font-semibold"> Konstantin </Link>
 
             <nav className="flex gap-4 text-sm text-zinc-300">
-              <a href="https://github.com/Konstantin-Krokhin" target="_blank" rel="noreferrer">
+              <a className="hover:text-zinc-100" href="https://github.com/Konstantin-Krokhin" target="_blank" rel="noreferrer">
                 GitHub
               </a>
-              <a href="https://www.linkedin.com/in/konstantin-krokhin-39a35a14b/" target="_blank" rel="noreferrer">
+              <a className="hover:text-zinc-200" href="https://www.linkedin.com/in/konstantin-krokhin-39a35a14b/" target="_blank" rel="noreferrer">
                 LinkedIn
               </a>
             </nav>
           </div>
         </header>
 
-        <main className="py-14">
+        <main className={`${container} py-12 flex-1`}>
           {children}
         </main>
 
-        <footer className="border-t border-zinc-800 mt-12">
-          <div className="px-6 py-6 text-sm text-zinc-400">
+        <footer className="border-t border-zinc-800">
+          <div className={`${container} py-6 text-sm text-zinc-400`}>
             © {new Date().getFullYear()} Konstantin Solutions
           </div>
         </footer>
