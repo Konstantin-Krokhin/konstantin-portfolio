@@ -1,5 +1,6 @@
 import { listProjects } from "@/server/projects";
 import Link from "next/link";
+import ContactForm from "@/components/ContactForm";
 
 type Project = Awaited<ReturnType<typeof listProjects>>[number];
 
@@ -114,6 +115,11 @@ export default async function Home() {
               </article>
             ))}
           </div>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold tracking-tight mb-6">Contact</h2>
+          <ContactForm cardClassName={card} />
         </section>
       </div>
     </>
