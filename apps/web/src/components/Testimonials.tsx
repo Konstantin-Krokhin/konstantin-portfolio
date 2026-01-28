@@ -2,7 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Scrollbar } from "swiper/modules";
+
 import "swiper/css";
+import "swiper/css/scrollbar"
 
 type Review = {
   author: string;
@@ -50,8 +53,12 @@ export default function Testimonials({ cardClassName }: { cardClassName: string 
 
   return (
     <Swiper
+	  className="testimonials-swiper"
       spaceBetween={16}
       slidesPerView={1}
+	  modules={[Scrollbar]}
+	  color=""
+	  scrollbar={{ draggable: true }}
       breakpoints={{
         768: { slidesPerView: 2 },
         1024: { slidesPerView: 3 },

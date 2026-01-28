@@ -9,6 +9,41 @@ const card = "rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6";
 const pill = "rounded-full border border-zinc-800 bg-zinc-900/40 px-3 py-1 text-xs text-zinc-300 p-1.5";
 const tag = "rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-[11px] text-zinc-300";
 
+type Service = {
+  id: string,
+  title: string,
+  priceCents: number,
+  description: string,
+  bookingUrl: string
+};
+
+const services: Service[] = [
+  { 
+    id: "website-audit",
+    title: "Website Audit",
+    priceCents: 9900,
+    description:
+      "30-45 min call + quick technical review (speed, SEO basics, conversion). You get a short action plan.",
+    bookingUrl: "https://calendly.com/konstakrokhin/website-audit/"
+  },
+  {
+    id: "bugfix-session",
+    title: "Bugfix Session",
+    priceCents: 14900,
+    description:
+      "60 min hands-on session. Fix 1-2 urgent issues (deploy, CSS, forms, tracking, minor backend fixes).",
+    bookingUrl: "https://calendly.com/konstakrokhin/bugfix-session"
+  },
+  {
+    id: "landing-page-build",
+    title: "Landing Page Build",
+    priceCents: 39900,
+    description:
+      "High-converting landing page + analytics + basic SEO + deployment. Normally 2-3 days turnaround.",
+    bookingUrl: "https://calendly.com/konstakrokhin/landing-page-build"
+  }
+];
+
 export default async function Home() {
   const projects: Project[] = await listProjects();
 
@@ -66,67 +101,74 @@ export default async function Home() {
         </div>
       </section>
 
-        <section>
-          
-          <div className="mb-6 flex items-end justify-between">
-            <h2 className="text-xl font-semibold tracking-tight">Projects</h2>
-            <span className="text-sm text-zinc-400">{projects.length} total</span>
-          </div>
+      <section>
 
-          <div className="grid gap-12 lg:grid-cols-4">
-            {projects.map((p: any) => (
-              <article key={p.id} className={`${card} transition hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/40`}>
-
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-base font-semibold leading-snug">{p.title}</h3>
-
-                  {p.slug ? (
-                      <Link
-                        href={`/projects/${p.slug}`}
-                        className="rounded-lg border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-xs text-zinc-200 transition hover:border-zinc-700 hover:text-white"
-                      >
-                        Open
-                      </Link>
-                  ) : null}
-                </div>
-
-                {p.description ? (
-                  <p className="mt-3 line-clamp-3 text-sm text-zinc-300 leading-relaxed">
-                    {p.description}
-                  </p>
-                ) : (
-                  <p className="mt-3 text-sm text-zinc-500">No description yet.</p>
-                )}
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {(p.techStack ?? "")
-                    .split(",")
-                    .map((t: string) => t.trim())
-                    .filter(Boolean)
-                    .slice(0, 6)
-                    .map((t: string) => (
-                      <span
-                        key={t}
-                        className={tag}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <Testimonials cardClassName={card} />
-        </section>
+        <h1 className="text-xl font-semibold tracking-tight"> Services </h1>
         
-        <section>
-          <h2 className="text-xl font-semibold tracking-tight mb-6">Contact</h2>
-          <ContactForm cardClassName={card} />
-        </section>
-      </div>
+
+      </section>
+
+      <section>
+        
+        <div className="mb-6 flex items-end justify-between">
+          <h2 className="text-xl font-semibold tracking-tight">Projects</h2>
+          <span className="text-sm text-zinc-400">{projects.length} total</span>
+        </div>
+
+        <div className="grid gap-12 lg:grid-cols-4">
+          {projects.map((p: any) => (
+            <article key={p.id} className={`${card} transition hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/40`}>
+
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="text-base font-semibold leading-snug">{p.title}</h3>
+
+                {p.slug ? (
+                    <Link
+                      href={`/projects/${p.slug}`}
+                      className="rounded-lg border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-xs text-zinc-200 transition hover:border-zinc-700 hover:text-white"
+                    >
+                      Open
+                    </Link>
+                ) : null}
+              </div>
+
+              {p.description ? (
+                <p className="mt-3 line-clamp-3 text-sm text-zinc-300 leading-relaxed">
+                  {p.description}
+                </p>
+              ) : (
+                <p className="mt-3 text-sm text-zinc-500">No description yet.</p>
+              )}
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {(p.techStack ?? "")
+                  .split(",")
+                  .map((t: string) => t.trim())
+                  .filter(Boolean)
+                  .slice(0, 6)
+                  .map((t: string) => (
+                    <span
+                      key={t}
+                      className={tag}
+                    >
+                      {t}
+                    </span>
+                  ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <Testimonials cardClassName={card} />
+      </section>
+
+      <section>
+        <h2 className="text-xl font-semibold tracking-tight mb-6">Contact</h2>
+        <ContactForm cardClassName={card} />
+      </section>
+    </div>
     </>
   );
 }
