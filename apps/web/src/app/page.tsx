@@ -3,21 +3,11 @@ import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import Testimonials from "@/components/Testimonials";
 import { PayButton } from "@/components/PayButton";
-
-type Project = Awaited<ReturnType<typeof listProjects>>[number];
+import { Project, Service } from "@/types";
 
 const card = "rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6";
 const pill = "rounded-full border border-zinc-800 bg-zinc-900/40 px-3 py-1 text-xs text-zinc-300 p-1.5";
 const tag = "rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-[11px] text-zinc-300";
-
-type Service = {
-  id: string,
-  title: string,
-  priceCents: number,
-  description: string,
-  bookingUrl: string,
-  stripePriceId: string
-};
 
 const services: Service[] = [
   { 
@@ -50,7 +40,7 @@ const services: Service[] = [
 ];
 
 export default async function Home() {
-  const projects: Project[] = await listProjects();
+  const projects: Project[] = await listProjects() as Project[];
 
   return (
     <>
@@ -151,7 +141,7 @@ export default async function Home() {
         </div>
 
         <div className="grid gap-12 lg:grid-cols-4">
-          {projects.map((p: any) => (
+          {projects.map((p: Project) => (
             <article key={p.id} className={`${card} transition hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/40`}>
 
               <div className="flex items-start justify-between gap-3">

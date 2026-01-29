@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getProjectBySlug } from "@/server/projects";
+import { Project } from "@/types";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -11,7 +12,7 @@ export default async function ProjectPage({ params }: PageProps) {
 
 	if (!slug) return notFound();
 
-	const project = await getProjectBySlug(slug);
+	const project: Project = await getProjectBySlug(slug) as Project;
 	if (!project) return notFound();
 
 	return (
