@@ -2,6 +2,7 @@ import { listProjects } from "@/server/projects";
 import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import Testimonials from "@/components/Testimonials";
+import { PayButton } from "@/components/PayButton";
 
 type Project = Awaited<ReturnType<typeof listProjects>>[number];
 
@@ -14,7 +15,8 @@ type Service = {
   title: string,
   priceCents: number,
   description: string,
-  bookingUrl: string
+  bookingUrl: string,
+  stripePriceId: string
 };
 
 const services: Service[] = [
@@ -24,7 +26,8 @@ const services: Service[] = [
     priceCents: 9900,
     description:
       "30-45 min call + quick technical review (speed, SEO basics, conversion). You get a short action plan.",
-    bookingUrl: "https://calendly.com/konstakrokhin/website-audit/"
+    bookingUrl: "https://calendly.com/konstakrokhin/website-audit/",
+    stripePriceId: "price_1Sv1V1RvTRY7ZoKSdBWyzK04"
   },
   {
     id: "bugfix-session",
@@ -32,7 +35,8 @@ const services: Service[] = [
     priceCents: 14900,
     description:
       "60 min hands-on session. Fix 1-2 urgent issues (deploy, CSS, forms, tracking, minor backend fixes).",
-    bookingUrl: "https://calendly.com/konstakrokhin/bugfix-session"
+    bookingUrl: "https://calendly.com/konstakrokhin/bugfix-session",
+    stripePriceId: "price_1Sv30FRvTRY7ZoKSzizosCzn"
   },
   {
     id: "landing-page-build",
@@ -40,7 +44,8 @@ const services: Service[] = [
     priceCents: 39900,
     description:
       "High-converting landing page + analytics + basic SEO + deployment. Normally 2-3 days turnaround.",
-    bookingUrl: "https://calendly.com/konstakrokhin/landing-page-build"
+    bookingUrl: "https://calendly.com/konstakrokhin/landing-page-build",
+    stripePriceId: "price_1Sv30dRvTRY7ZoKSscBcRYhN"
   }
 ];
 
@@ -111,8 +116,8 @@ export default async function Home() {
               <div className="flex items-start justify-between gap-3">
                 <h3 className="text-base font-semibold leading-snug">{s.title}</h3>
 
-                {s.priceCents ? (
-                    <a href={`/api/checkout?serviceId=${s.id}`}>Prepay</a>
+                {s.stripePriceId ? (
+                    <PayButton priceId={s.stripePriceId} />
                 ) : null}
               </div>
 
