@@ -103,8 +103,38 @@ export default async function Home() {
 
       <section>
 
-        <h1 className="text-xl font-semibold tracking-tight"> Services </h1>
-        
+        <h2 className="text-xl font-semibold tracking-tight"> Services </h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((s) => (
+            <article key={s.id} className={`${card} transition hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/40`}>
+
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="text-base font-semibold leading-snug">{s.title}</h3>
+
+                {s.priceCents ? (
+                    <a href={`/api/checkout?serviceId=${s.id}`}>Prepay</a>
+                ) : null}
+              </div>
+
+              {s.description ? (
+                <p className="mt-3 line-clamp-3 text-sm text-zinc-300 leading-relaxed">
+                  {s.description}
+                </p>
+              ) : (
+                <p className="mt-3 text-sm text-zinc-500">No description yet.</p>
+              )}
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {s.bookingUrl ? (
+                  <a href={s.bookingUrl} target="_blank" rel="noreferrer">Book</a>
+                ) : null
+                  
+                }
+              </div>
+            </article>
+
+        ))}
+        </div>
 
       </section>
 
@@ -161,6 +191,7 @@ export default async function Home() {
       </section>
 
       <section>
+        <h2 className="text-xl font-semibold tracking-tight mb-6">Testimonials</h2>
         <Testimonials cardClassName={card} />
       </section>
 
