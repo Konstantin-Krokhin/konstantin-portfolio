@@ -39,6 +39,14 @@ const services: Service[] = [
   }
 ];
 
+function formatCadFromCents(cents: number) {
+  return new Intl.NumberFormat("en-CA", {
+    style: "currency",
+    currency: "CAD",
+    maximumFractionDigits: 0
+  }).format(cents / 100);
+}
+
 export default async function Home() {
   const projects: Project[] = await listProjects() as Project[];
 
@@ -104,8 +112,13 @@ export default async function Home() {
             <article key={s.id} className={`${card} transition hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/40`}>
 
               <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
                 <h3 className="text-base font-semibold leading-snug">{s.title}</h3>
 
+                <p className="mt-1 text-sm text-zinc-400">
+                  {formatCadFromCents(s.priceCents)}
+                </p>
+                </div>
                 {s.stripePriceId ? (
                     <PayButton priceId={s.stripePriceId} />
                 ) : null}
