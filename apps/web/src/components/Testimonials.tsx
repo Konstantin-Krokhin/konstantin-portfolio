@@ -54,15 +54,17 @@ export default function Testimonials({ cardClassName }: { cardClassName: string 
   return (
     <Swiper
 	  className="testimonials-swiper"
-      spaceBetween={16}
+      spaceBetween={24}
       slidesPerView={1}
 	  modules={[Scrollbar]}
 	  color=""
 	  scrollbar={{ draggable: true }}
       breakpoints={{
-        768: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 },
+        640: {slidesPerView: 1},
+        1024: { slidesPerView: 2 },
+        1280: { slidesPerView: 3 },
       }}
+    loop
     >
       {reviews.map((r, idx) => (
         <SwiperSlide key={idx}>

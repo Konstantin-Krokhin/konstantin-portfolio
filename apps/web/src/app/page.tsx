@@ -6,8 +6,8 @@ import { PayButton } from "@/components/PayButton";
 import { Project, Service } from "@/types";
 
 const card = "rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6";
-const pill = "rounded-full border border-zinc-800 bg-zinc-900/40 px-3 py-1 text-xs text-zinc-300 p-1.5";
-const tag = "rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-[11px] text-zinc-300";
+const pill = "rounded-full border border-zinc-800 bg-zinc-900/40 px-3 py-1 text-xs text-zinc-300";
+const tag = "rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-[13px] text-zinc-300";
 
 const services: Service[] = [
   { 
@@ -73,14 +73,14 @@ export default async function Home() {
             focusing on clean architecture, testing, and deployability.
           </p>
 
-          <div className="flex flex-wrap gap-2 justify-center justify-center">
+          <div className="flex flex-wrap gap-2 justify-center">
             <span className={pill}>Next.js</span>
             <span className={pill}>Prisma</span>
             <span className={pill}>Neon Postgres</span>
           </div>
         </div>
 
-        <div className="lg:w-50 space-y-4">
+        <div className="lg:w-60 space-y-4">
           <div className={card}>
             <p className="text-xs uppercase tracking-wide text-zinc-400">What I build</p>
             <p className="mt-3 text-sm text-zinc-200 leading-relaxed">
@@ -104,21 +104,19 @@ export default async function Home() {
         </div>
       </section>
 
-      <section>
+      <section className="space-y-4">
 
         <h2 className="text-xl font-semibold tracking-tight"> Services </h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
             <article key={s.id} className={`${card} transition hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/40`}>
 
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
-                <h3 className="text-base font-semibold leading-snug">{s.title}</h3>
-
-                <p className="mt-1 text-sm text-zinc-400">
-                  {formatCadFromCents(s.priceCents)}
-                </p>
+                  <h3 className="text-base font-semibold leading-snug">{s.title}</h3>
+                  <p className="mt-1 text-sm text-zinc-400"> {formatCadFromCents(s.priceCents)} </p>
                 </div>
+
                 {s.stripePriceId ? (
                     <PayButton priceId={s.stripePriceId} />
                 ) : null}
@@ -132,9 +130,9 @@ export default async function Home() {
                 <p className="mt-3 text-sm text-zinc-500">No description yet.</p>
               )}
 
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-4 flex gap-2">
                 {s.bookingUrl ? (
-                  <a href={s.bookingUrl} target="_blank" rel="noreferrer">Book</a>
+                  <a href={s.bookingUrl} target="_blank" rel="noreferrer" className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-s font-medium text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-900 hover:text-white">Book Appointment</a>
                 ) : null
                   
                 }
@@ -144,16 +142,16 @@ export default async function Home() {
         ))}
         </div>
 
-      </section>
+      </section >
 
-      <section>
+      <section className="space-y-4">
         
-        <div className="mb-6 flex items-end justify-between">
+        <div>
           <h2 className="text-xl font-semibold tracking-tight">Projects</h2>
           <span className="text-sm text-zinc-400">{projects.length} total</span>
         </div>
 
-        <div className="grid gap-12 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((p: Project) => (
             <article key={p.id} className={`${card} transition hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/40`}>
 
@@ -163,8 +161,7 @@ export default async function Home() {
                 {p.slug ? (
                     <Link
                       href={`/projects/${p.slug}`}
-                      className="rounded-lg border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-xs text-zinc-200 transition hover:border-zinc-700 hover:text-white"
-                    >
+                      className="rounded-lg border border-zinc-800 bg-zinc-950 px-10 py-2 text-s text-zinc-200 transition hover:border-zinc-700 hover:text-white">
                       Open
                     </Link>
                 ) : null}
@@ -185,10 +182,7 @@ export default async function Home() {
                   .filter(Boolean)
                   .slice(0, 6)
                   .map((t: string) => (
-                    <span
-                      key={t}
-                      className={tag}
-                    >
+                    <span key={t} className={tag}>
                       {t}
                     </span>
                   ))}
@@ -198,13 +192,13 @@ export default async function Home() {
         </div>
       </section>
 
-      <section>
-        <h2 className="text-xl font-semibold tracking-tight mb-6">Testimonials</h2>
-        <Testimonials cardClassName={card} />
+      <section className="space-y-4">
+        <h2 className="text-xl font-semibold tracking-tight">Testimonials</h2>
+          <Testimonials cardClassName={card} />
       </section>
 
-      <section>
-        <h2 className="text-xl font-semibold tracking-tight mb-6">Contact</h2>
+      <section className="space-y-4">
+        <h2 className="text-xl font-semibold tracking-tight">Contact</h2>
         <ContactForm cardClassName={card} />
       </section>
     </div>
