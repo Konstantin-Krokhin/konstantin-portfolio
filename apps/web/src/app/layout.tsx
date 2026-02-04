@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Link from "next/link"
+import BusinessDetails from "@/components/BusinessDetails"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -12,9 +13,36 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
 });
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Konstantin Solutions",
+  url: "https://konstantinsolutions.tech",
+  email: "sales.konsta@gmail.com",
+  telephone: "+16725585554",
+  areaServed: [
+    { "@type": "City", name: "Toronto" },
+    { "@type": "AdministrativeArea", name: "Greater Toronto Area" }
+  ],
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Saturday"],
+      opens: "10:00",
+      closes: "14:00"
+    }
+  ]
+};
+
 export const metadata: Metadata = {
-  title: "Konstantin Krokhin - Full-Stack Portfolio",
-  description: "Production-style full-stack apps with Next.js, Prisma, and Neon Postgres.",
+  title: "Konstantin Solutions - Web Development & AI Integration",
+  description: "Web development and AI automations for Canadian businesses.",
 };
 
 const container = "mx-auto max-x-7xl px-6";
@@ -26,6 +54,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={[
           geistSans.variable,
@@ -39,6 +73,7 @@ export default function RootLayout({
             <Link href="/" className="font-semibold"> Konstantin </Link>
 
             <nav className="flex gap-4 text-sm text-zinc-300">
+              <Link className="hover:text-zinc-100" href="/contact">Contact</Link>
               <a className="hover:text-zinc-100" href="https://github.com/Konstantin-Krokhin" target="_blank" rel="noreferrer">
                 GitHub
               </a>
@@ -54,8 +89,11 @@ export default function RootLayout({
         </main>
 
         <footer className="border-t border-zinc-800">
-          <div className={`${container} py-6 text-sm text-zinc-400`}>
-            © {new Date().getFullYear()} Konstantin Solutions
+          <div className={`${container} py-8 text-sm text-zinc-400`}>
+            <BusinessDetails variant="compact" />
+            <div className="mt-4 text-s text-zinc-500">
+              © {new Date().getFullYear()} Konstantin Solutions
+            </div>
           </div>
         </footer>
 

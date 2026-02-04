@@ -91,16 +91,10 @@ export default async function Home() {
           <div className={card}>
             <p className="text-xs uppercase tracking-wide text-zinc-400">What I care about</p>
             <p className="mt-3 text-sm text-zinc-200 leading-relaxed">
-              Clean architecture, reliability, security mindset, and developer experience.
+              Clean architecture, reliability, security mindset, and customer user experience.
             </p>
           </div>
 
-          <div className={card}>
-            <p className="text-xs uppercase tracking-wide text-zinc-400">Open to</p>
-            <p className="mt-3 text-sm text-zinc-200 leading-relaxed">
-              Full-stack roles, backend-heavy work, and contract projects. Toronto / remote.
-            </p>
-          </div>
         </div>
       </section>
 
@@ -147,7 +141,7 @@ export default async function Home() {
       <section className="space-y-4">
         
         <div>
-          <h2 className="text-xl font-semibold tracking-tight">Projects</h2>
+          <h2 className="text-xl font-semibold tracking-tight">Work</h2>
           <span className="text-sm text-zinc-400">{projects.length} total</span>
         </div>
 
@@ -201,6 +195,7 @@ export default async function Home() {
         <h2 className="text-xl font-semibold tracking-tight">Contact</h2>
         <ContactForm cardClassName={card} />
       </section>
+      
     </div>
     </>
   );
