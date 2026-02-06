@@ -1,4 +1,5 @@
 import { listProjects } from "@/server/projects";
+import { demos, type Demo } from "@/app/demo/_demo"
 import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import Testimonials from "@/components/Testimonials";
@@ -147,47 +148,66 @@ export default async function Home() {
       </section >
 
       <section className="space-y-4">
-        
         <div>
-          <h2 className="text-xl font-semibold tracking-tight">Work</h2>
-          <span className="text-sm text-zinc-400">{projects.length} total</span>
+          <h2 className="text-xl font-semibold tracking-tight">Demos</h2>
+          <span className="text-sm text-zinc-400">{demos.length} total</span>
+          <div className="mt-1 text-xs text-zinc-500">
+            Concept demos built from public listings. Not affiliated with the businesses.
+          </div>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p: Project) => (
-            <article key={p.id} className={`${card} transition hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/40`}>
-
+          {demos.map((d: Demo) => (
+            <article
+              key={d.slug}
+              className={`${card} transition hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/40`}
+            >
               <div className="flex items-start justify-between gap-3">
-                <h3 className="text-base font-semibold leading-snug">{p.title}</h3>
+                <div>
+                  <div className="text-xs text-zinc-400">{d.category}</div>
+                  <h3 className="mt-1 text-base font-semibold leading-snug">
+                    {d.businessName}
+                  </h3>
+                </div>
 
-                {p.slug ? (
-                    <Link
-                      href={`/projects/${p.slug}`}
-                      className="rounded-lg border border-zinc-800 bg-zinc-950 px-10 py-2 text-s text-zinc-200 transition hover:border-zinc-700 hover:text-white">
-                      Open
-                    </Link>
+                <Link
+                  href={`/demo/${d.slug}`}
+                  className="rounded-lg border border-zinc-800 bg-zinc-950 px-10 py-2 text-s text-zinc-200 transition hover:border-zinc-700 hover:text-white"
+                >
+                  Open
+                </Link>
+              </div>
+
+              <div className="mt-3 space-y-1 text-sm text-zinc-300 leading-relaxed">
+                <div className="text-zinc-300">{d.city}</div>
+                <div className="text-zinc-400">{d.hoursNote ?? "Hours not listed"}</div>
+
+                {typeof d.rating === "number" ? (
+                  <div className="text-zinc-400">
+                    {d.rating.toFixed(1)} / 5
+                    {typeof d.reviewsCount === "number" ? ` (${d.reviewsCount} reviews)` : ""}
+                  </div>
                 ) : null}
               </div>
 
-              {p.description ? (
-                <p className="mt-3 line-clamp-3 text-sm text-zinc-300 leading-relaxed">
-                  {p.description}
+              {d.notes ? (
+                <p className="mt-3 line-clamp-2 text-xs text-zinc-500">
+                  {d.notes}
                 </p>
-              ) : (
-                <p className="mt-3 text-sm text-zinc-500">No description yet.</p>
-              )}
+              ) : null}
 
+              {/* Optional quick actions (good for you internally, keep subtle) */}
               <div className="mt-4 flex flex-wrap gap-2">
-                {(p.techStack ?? "")
-                  .split(",")
-                  .map((t: string) => t.trim())
-                  .filter(Boolean)
-                  .slice(0, 6)
-                  .map((t: string) => (
-                    <span key={t} className={tag}>
-                      {t}
-                    </span>
-                  ))}
+                <a
+                  href={d.phoneHref}
+                  className="rounded-full border border-zinc-800 bg-zinc-950/40 px-3 py-1 text-xs text-zinc-200 transition hover:border-zinc-700 hover:text-white"
+                >
+                  Call
+                </a>
+
+                <span className="rounded-full border border-zinc-800 bg-zinc-950/40 px-3 py-1 text-xs text-zinc-300">
+                  {d.city}
+                </span>
               </div>
             </article>
           ))}

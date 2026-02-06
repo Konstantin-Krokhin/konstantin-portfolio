@@ -64,6 +64,7 @@ export default function RootLayout({
 
         <footer className="border-t border-zinc-800">
           <div className={`${container} py-8 text-sm text-zinc-400`}>
+            <Link href="/demo"> Demos </Link>
             <BusinessDetails variant="compact" />
             <div className="mt-4 text-s text-zinc-500">
               © {new Date().getFullYear()} Konstantin Solutions
