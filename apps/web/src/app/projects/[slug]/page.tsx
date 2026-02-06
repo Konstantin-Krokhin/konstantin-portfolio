@@ -7,6 +7,8 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
+export const revalidate = 60;
+
 export default async function ProjectPage({ params }: PageProps) {
   const { slug } = await params;
 

@@ -47,6 +47,8 @@ function formatCadFromCents(cents: number) {
   }).format(cents / 100);
 }
 
+export const revalidate = 60;
+
 export default async function Home() {
   const projects: Project[] = await listProjects() as Project[];
 
@@ -69,8 +71,7 @@ export default async function Home() {
           <p className="text-sm text-zinc-400 text-center">konstantinsolutions.tech</p>
 
           <p className="text-lg text-zinc-300 leading-relaxed mx-auto lg:mx-0 text-center">
-            I build production-style full-stack apps with Next.js, Prisma and Postgres,
-            focusing on clean architecture, testing, and deployability.
+            Web development + AI automations for businesses.
           </p>
 
           <div className="flex flex-wrap gap-2 justify-center">
@@ -195,7 +196,7 @@ export default async function Home() {
         <h2 className="text-xl font-semibold tracking-tight">Contact</h2>
         <ContactForm cardClassName={card} />
       </section>
-      
+
     </div>
     </>
   );
