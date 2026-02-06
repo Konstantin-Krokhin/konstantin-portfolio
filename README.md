@@ -1,13 +1,13 @@
-# Konstantin Portfolio Platform
+# Konstantin Solutions – Web & AI Services Platform
 
-Production-grade full-stack portfolio platform built with a **Turborepo monorepo architecture**, designed to demonstrate real-world frontend, backend, and database separation using modern tooling and best practices.
+Production-ready web platform powering Konstantin Solutions, a software consultancy providing web development and AI automation services for businesses.
 
 ---
 
 ## Overview
 
-This repository serves as both a personal portfolio and a reference implementation of a scalable full-stack system.  
-It focuses on clean architecture, separation of concerns, and production-oriented workflows rather than demo-only code.
+This repository contains the codebase used to run the public business website and supporting backend services.
+It is built with a production-first mindset, focusing on reliability, maintainability, and real-world deployment.
 
 ---
 
@@ -98,10 +98,12 @@ Common configurations live in packages/ and are reused across all apps.
 ## Project Status
 
 ```
+This codebase is actively maintained and used in production to support Konstantin Solutions client work:
+
 🚧 In active development
 Planned additions include:
 Admin authentication
-CRUD management for portfolio content
+CRUD management for client's content
 Redis-based caching
 CI/CD pipeline
 Cloud deployment (Azure)

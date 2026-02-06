@@ -65,7 +65,7 @@ export default async function Home() {
         <div className="lg:flex-1 space-y-8">
 
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl text-center">
-            Hi, I&apos;m Konstantin.
+            Welcome to Konstantin Solutions.
           </h1>
 
           <p className="text-sm text-zinc-400 text-center">konstantinsolutions.tech</p>
@@ -83,16 +83,23 @@ export default async function Home() {
 
         <div className="lg:w-60 space-y-4">
           <div className={card}>
-            <p className="text-xs uppercase tracking-wide text-zinc-400">What I build</p>
+            <p className="text-xs uppercase tracking-wide text-zinc-400">What's Konstantin Solutions?</p>
             <p className="mt-3 text-sm text-zinc-200 leading-relaxed">
-              Full-stack apps with Next.js, Prisma, and Postgres - designed to ship and scale.
+              Konstantin Solutions is a software consultancy focused on building reliable web and AI-powered solutions for businesses.
             </p>
           </div>
 
           <div className={card}>
-            <p className="text-xs uppercase tracking-wide text-zinc-400">What I care about</p>
+            <p className="text-xs uppercase tracking-wide text-zinc-400">Team's Expertise</p>
             <p className="mt-3 text-sm text-zinc-200 leading-relaxed">
-              Clean architecture, reliability, security mindset, and customer user experience.
+              Led by a full-stack engineer with 7+ years of production experience.
+            </p>
+          </div>
+
+          <div className={card}>
+            <p className="text-xs uppercase tracking-wide text-zinc-400">How I help businesses?</p>
+            <p className="mt-3 text-sm text-zinc-200 leading-relaxed">
+              I help startups and small companies automate workflows, improve performance, and ship maintainable software.
             </p>
           </div>
 
