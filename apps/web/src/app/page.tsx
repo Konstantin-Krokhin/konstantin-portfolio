@@ -1,7 +1,7 @@
 import { listProjects } from "@/server/projects";
 import { prototypeDemos } from "@/app/demo/_demo";
+import { BUSINESS } from "@/content/business";
 import ContactForm from "@/components/ContactForm";
-import Testimonials from "@/components/Testimonials";
 import { PayButton } from "@/components/PayButton";
 import { Project, Service } from "@/types";
 
@@ -64,14 +64,32 @@ export default async function Home() {
       <section className="flex flex-col lg:flex-row">
         <div className="lg:flex-1 space-y-8">
 
+          <p className="text-sm text-zinc-400 text-center">Konstantin Solutions · k-solutions.tech</p>
+
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl text-center">
-            Welcome to Konstantin Solutions.
+            AI chatbots that answer your customers.
+            <span className="block text-zinc-300">Automation that saves you hours.</span>
           </h1>
 
-          <p className="text-sm text-zinc-400 text-center">k-solutions.tech</p>
-
           <p className="text-lg text-zinc-300 leading-relaxed mx-auto lg:mx-0 text-center">
-            AI chatbots &amp; Python automation for businesses.
+            I build chatbots and Python automation for small businesses in the GTA —
+            working prototype first, so you see the value before you pay.
+          </p>
+
+          <div className="flex flex-wrap gap-3 justify-center">
+            <a href="#demos" className="rounded-lg bg-zinc-100 px-5 py-2.5 text-sm font-semibold text-zinc-950 transition hover:bg-white">
+              Try the live demos
+            </a>
+            <a href="#contact" className="rounded-lg border border-zinc-800 bg-zinc-950 px-5 py-2.5 text-sm font-medium text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-900 hover:text-white">
+              Get in touch
+            </a>
+          </div>
+
+          <p className="text-sm text-zinc-400 text-center">
+            Prefer to talk?{" "}
+            <a href={`tel:${BUSINESS.phoneE164}`} className="underline hover:text-zinc-200">{BUSINESS.phoneDisplay}</a>
+            {" · "}
+            <a href={`mailto:${BUSINESS.email}`} className="underline hover:text-zinc-200">{BUSINESS.email}</a>
           </p>
 
           <div className="flex flex-wrap gap-2 justify-center">
@@ -147,6 +165,37 @@ export default async function Home() {
       </section >
 
       <section className="space-y-4">
+        <h2 className="text-xl font-semibold tracking-tight">How it works</h2>
+        <div className="grid gap-6 sm:grid-cols-3">
+          {[
+            {
+              step: "1",
+              title: "You describe the problem",
+              text: "A quick call about what's eating your time — missed inquiries, manual booking, repetitive messages.",
+            },
+            {
+              step: "2",
+              title: "I build a working prototype",
+              text: "You get a clickable demo like the ones below, usually within days — before you pay anything.",
+            },
+            {
+              step: "3",
+              title: "You approve, I ship it",
+              text: "We refine it together, then I deploy it and make sure it keeps running.",
+            },
+          ].map((s) => (
+            <article key={s.step} className={card}>
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-100 text-sm font-bold text-zinc-950">
+                {s.step}
+              </div>
+              <h3 className="mt-3 text-base font-semibold leading-snug">{s.title}</h3>
+              <p className="mt-2 text-sm text-zinc-300 leading-relaxed">{s.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="demos" className="space-y-4 scroll-mt-24">
         <div>
           <h2 className="text-xl font-semibold tracking-tight">Demos</h2>
           <span className="text-sm text-zinc-400">{prototypeDemos.length} live prototypes</span>
@@ -183,12 +232,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="space-y-4">
-        <h2 className="text-xl font-semibold tracking-tight">Testimonials</h2>
-          <Testimonials cardClassName={card} />
-      </section>
-
-      <section className="space-y-4">
+      <section id="contact" className="space-y-4 scroll-mt-24">
         <h2 className="text-xl font-semibold tracking-tight">Contact</h2>
         <ContactForm cardClassName={card} />
       </section>

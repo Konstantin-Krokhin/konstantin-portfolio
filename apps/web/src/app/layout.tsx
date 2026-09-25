@@ -17,6 +17,19 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Konstantin Solutions — AI Chatbots & Python Automation",
   description: "AI chatbots and Python automation for Canadian businesses.",
+  openGraph: {
+    title: "Konstantin Solutions — AI Chatbots & Python Automation",
+    description:
+      "I build chatbots and Python automation for small businesses in the GTA — working prototype first, so you see the value before you pay.",
+    url: "https://k-solutions.tech",
+    siteName: "Konstantin Solutions",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Konstantin Solutions — AI Chatbots & Python Automation",
+    description: "AI chatbots and Python automation for Canadian businesses.",
+  },
 };
 
 const container = "mx-auto max-x-7xl px-6";
