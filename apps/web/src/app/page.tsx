@@ -1,5 +1,5 @@
 import { listProjects } from "@/server/projects";
-import { demos, type Demo } from "@/app/demo/_demo"
+import { demos, prototypeDemos, type Demo } from "@/app/demo/_demo"
 import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import Testimonials from "@/components/Testimonials";
@@ -69,16 +69,16 @@ export default async function Home() {
             Welcome to Konstantin Solutions.
           </h1>
 
-          <p className="text-sm text-zinc-400 text-center">konstantinsolutions.tech</p>
+          <p className="text-sm text-zinc-400 text-center">k-solutions.tech</p>
 
           <p className="text-lg text-zinc-300 leading-relaxed mx-auto lg:mx-0 text-center">
-            Web development + AI automations for businesses.
+            AI chatbots &amp; Python automation for businesses.
           </p>
 
           <div className="flex flex-wrap gap-2 justify-center">
+            <span className={pill}>AI Chatbots</span>
+            <span className={pill}>Python Automation</span>
             <span className={pill}>Next.js</span>
-            <span className={pill}>Prisma</span>
-            <span className={pill}>Neon Postgres</span>
           </div>
         </div>
 
@@ -150,12 +150,41 @@ export default async function Home() {
       <section className="space-y-4">
         <div>
           <h2 className="text-xl font-semibold tracking-tight">Demos</h2>
-          <span className="text-sm text-zinc-400">{demos.length} total</span>
+          <span className="text-sm text-zinc-400">{demos.length + prototypeDemos.length} total</span>
           <div className="mt-1 text-xs text-zinc-500">
             Concept demos built from public listings. Not affiliated with the businesses.
           </div>
         </div>
 
+        <h3 className="text-base font-semibold tracking-tight text-zinc-200">Live interactive prototypes</h3>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {prototypeDemos.map((p) => (
+            <article
+              key={p.url}
+              className={`${card} transition hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/40`}
+            >
+              <div className="text-xs text-zinc-400">{p.tag}</div>
+              <h3 className="mt-1 text-base font-semibold leading-snug">
+                {p.title}
+              </h3>
+              <p className="mt-3 text-sm text-zinc-300 leading-relaxed">
+                {p.blurb}
+              </p>
+              <div className="mt-4">
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-lg border border-zinc-800 bg-zinc-950 px-6 py-2 text-s font-medium text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-900 hover:text-white"
+                >
+                  Try it ↗
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <h3 className="text-base font-semibold tracking-tight text-zinc-200">Website concepts</h3>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {demos.map((d: Demo) => (
             <article

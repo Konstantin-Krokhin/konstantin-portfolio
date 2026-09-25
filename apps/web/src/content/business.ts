@@ -1,9 +1,9 @@
 export const BUSINESS = {
   name: "Konstantin Solutions",
-  url: "https://konstantinsolutions.tech",
-  email: "sales.konsta@gmail.com",
-  phoneDisplay: "+1 (672) 558-5554",
-  phoneE164: "+16725585554",
+  url: "https://k-solutions.tech",
+  email: "konstakrokhin@gmail.com",
+  phoneDisplay: "(647) 236-1803",
+  phoneE164: "+16472361803",
   serviceArea: "clients in Canada and internationally since 2024",
   timezone: "ET",
   hours: [

@@ -15,8 +15,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Konstantin Solutions - Web Development & AI Integration",
-  description: "Web development and AI automations for Canadian businesses.",
+  title: "Konstantin Solutions — AI Chatbots & Python Automation",
+  description: "AI chatbots and Python automation for Canadian businesses.",
 };
 
 const container = "mx-auto max-x-7xl px-6";
