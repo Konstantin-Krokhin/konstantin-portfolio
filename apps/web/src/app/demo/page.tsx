@@ -1,6 +1,5 @@
 // apps/web/app/demo/page.tsx
-import Link from "next/link";
-import { demos } from "./_demo";
+import { prototypeDemos } from "./_demo";
 
 export const metadata = {
   title: "Demos - Konstantin Solutions",
@@ -11,32 +10,33 @@ export default function DemoIndexPage() {
   return (
     <main className="min-h-screen bg-zinc-950 text-zinc-100">
       <section className="mx-auto max-w-5xl px-4 py-12">
-        <h1 className="text-3xl font-bold">Website demos</h1>
+        <h1 className="text-3xl font-bold">Live prototypes</h1>
         <p className="mt-3 max-w-2xl text-zinc-300">
-          Concept demos built from public business listings. Not affiliated with the businesses.
-          Used to show layout, mobile experience, and conversion-focused structure.
+          Interactive concept prototypes of AI chatbots and booking/quote
+          automation. Not affiliated with any real business.
         </p>
 
         <div className="mt-8 grid gap-4 md:grid-cols-2">
-          {demos.map((d) => (
+          {prototypeDemos.map((p) => (
             <div
-              key={d.slug}
+              key={p.url}
               className="rounded-3xl border border-zinc-800 bg-zinc-950/30 p-6"
             >
-              <div className="text-sm text-zinc-400">{d.category}</div>
-              <div className="mt-1 text-xl font-semibold">{d.businessName}</div>
-              <div className="mt-2 text-sm text-zinc-300">{d.city}</div>
+              <div className="text-sm text-zinc-400">{p.tag}</div>
+              <div className="mt-1 text-xl font-semibold">{p.title}</div>
+              <p className="mt-2 text-sm text-zinc-300 leading-relaxed">
+                {p.blurb}
+              </p>
 
-              <div className="mt-4 flex items-center gap-3">
-                <Link
-                  href={`/demo/${d.slug}`}
+              <div className="mt-4">
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noreferrer"
                   className="rounded-2xl bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-950 hover:bg-white"
                 >
-                  View demo
-                </Link>
-                <div className="text-xs text-zinc-500">
-                  {d.rating ? `${d.rating} (${d.reviewsCount ?? 0} reviews)` : ""}
-                </div>
+                  Try it ↗
+                </a>
               </div>
             </div>
           ))}

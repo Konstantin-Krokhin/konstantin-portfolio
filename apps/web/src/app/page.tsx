@@ -1,6 +1,5 @@
 import { listProjects } from "@/server/projects";
-import { demos, prototypeDemos, type Demo } from "@/app/demo/_demo"
-import Link from "next/link";
+import { prototypeDemos } from "@/app/demo/_demo";
 import ContactForm from "@/components/ContactForm";
 import Testimonials from "@/components/Testimonials";
 import { PayButton } from "@/components/PayButton";
@@ -150,13 +149,12 @@ export default async function Home() {
       <section className="space-y-4">
         <div>
           <h2 className="text-xl font-semibold tracking-tight">Demos</h2>
-          <span className="text-sm text-zinc-400">{demos.length + prototypeDemos.length} total</span>
+          <span className="text-sm text-zinc-400">{prototypeDemos.length} live prototypes</span>
           <div className="mt-1 text-xs text-zinc-500">
-            Concept demos built from public listings. Not affiliated with the businesses.
+            Interactive concept prototypes. Not affiliated with any real business.
           </div>
         </div>
 
-        <h3 className="text-base font-semibold tracking-tight text-zinc-200">Live interactive prototypes</h3>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {prototypeDemos.map((p) => (
             <article
@@ -179,64 +177,6 @@ export default async function Home() {
                 >
                   Try it ↗
                 </a>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <h3 className="text-base font-semibold tracking-tight text-zinc-200">Website concepts</h3>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {demos.map((d: Demo) => (
-            <article
-              key={d.slug}
-              className={`${card} transition hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/40`}
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <div className="text-xs text-zinc-400">{d.category}</div>
-                  <h3 className="mt-1 text-base font-semibold leading-snug">
-                    {d.businessName}
-                  </h3>
-                </div>
-
-                <Link
-                  href={`/demo/${d.slug}`}
-                  className="rounded-lg border border-zinc-800 bg-zinc-950 px-10 py-2 text-s text-zinc-200 transition hover:border-zinc-700 hover:text-white"
-                >
-                  Open
-                </Link>
-              </div>
-
-              <div className="mt-3 space-y-1 text-sm text-zinc-300 leading-relaxed">
-                <div className="text-zinc-300">{d.city}</div>
-                <div className="text-zinc-400">{d.hoursNote ?? "Hours not listed"}</div>
-
-                {typeof d.rating === "number" ? (
-                  <div className="text-zinc-400">
-                    {d.rating.toFixed(1)} / 5
-                    {typeof d.reviewsCount === "number" ? ` (${d.reviewsCount} reviews)` : ""}
-                  </div>
-                ) : null}
-              </div>
-
-              {d.notes ? (
-                <p className="mt-3 line-clamp-2 text-xs text-zinc-500">
-                  {d.notes}
-                </p>
-              ) : null}
-
-              {/* Optional quick actions (good for you internally, keep subtle) */}
-              <div className="mt-4 flex flex-wrap gap-2">
-                <a
-                  href={d.phoneHref}
-                  className="rounded-full border border-zinc-800 bg-zinc-950/40 px-3 py-1 text-xs text-zinc-200 transition hover:border-zinc-700 hover:text-white"
-                >
-                  Call
-                </a>
-
-                <span className="rounded-full border border-zinc-800 bg-zinc-950/40 px-3 py-1 text-xs text-zinc-300">
-                  {d.city}
-                </span>
               </div>
             </article>
           ))}
