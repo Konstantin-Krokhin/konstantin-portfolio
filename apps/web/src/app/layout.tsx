@@ -51,21 +51,25 @@ export default function RootLayout({
         className={[
           geistSans.variable,
           geistMono.variable,
-          "min-h-screen bg-zinc-950 text-zinc-100 font-sans antialiased flex flex-col",
+          "min-h-screen bg-[#05070d] text-zinc-100 font-sans antialiased flex flex-col",
         ].join(" ")}
       >
 
-        <header className = "border-b border-zinc-800">
+        <header className="sticky top-0 z-40 border-b border-white/10 bg-[#05070d]/80 backdrop-blur-md">
           <div className={`${container} flex items-center justify-between py-4`}>
-            <Link href="/" className="font-semibold"> Konstantin </Link>
+            <Link href="/" className="font-bold tracking-tight">
+              Konstantin <span className="text-gradient">Solutions</span>
+            </Link>
 
-            <nav className="flex gap-4 text-sm text-zinc-300">
-              <Link className="hover:text-zinc-100" href="/contact">Contact</Link>
-              <a className="hover:text-zinc-100" href="https://github.com/Konstantin-Krokhin" target="_blank" rel="noreferrer">
-                GitHub
-              </a>
-              <a className="hover:text-zinc-200" href="https://www.linkedin.com/in/konstantin-krokhin-39a35a14b/" target="_blank" rel="noreferrer">
-                LinkedIn
+            <nav className="flex items-center gap-5 text-sm text-zinc-400">
+              <a className="hidden transition hover:text-zinc-100 sm:inline" href="/#services">Services</a>
+              <a className="hidden transition hover:text-zinc-100 sm:inline" href="/#demos">Demos</a>
+              <Link className="transition hover:text-zinc-100" href="/contact">Contact</Link>
+              <a
+                href="#contact"
+                className="rounded-lg bg-gradient-to-r from-indigo-500 to-cyan-400 px-4 py-2 text-xs font-semibold text-white shadow-md shadow-indigo-500/20 transition hover:brightness-110"
+              >
+                Get in touch
               </a>
             </nav>
           </div>
@@ -75,13 +79,15 @@ export default function RootLayout({
           {children}
         </main>
 
-        <footer className="border-t border-zinc-800">
-          <div className={`${container} py-8 text-sm text-zinc-400`}>
-            <Link href="/demo"> Demos </Link>
-            <BusinessDetails variant="compact" />
-            <div className="mt-4 text-s text-zinc-500">
-              © {new Date().getFullYear()} Konstantin Solutions
+        <footer className="border-t border-white/10">
+          <div className={`${container} flex flex-col gap-4 py-10 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between`}>
+            <div>
+              <Link href="/" className="font-semibold text-zinc-200">
+                Konstantin <span className="text-gradient">Solutions</span>
+              </Link>
+              <div className="mt-1">© {new Date().getFullYear()} · AI chatbots & Python automation</div>
             </div>
+            <BusinessDetails variant="compact" />
           </div>
         </footer>
 

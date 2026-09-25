@@ -1,23 +1,93 @@
-import { listProjects } from "@/server/projects";
 import { prototypeDemos } from "@/app/demo/_demo";
 import { BUSINESS } from "@/content/business";
 import ContactForm from "@/components/ContactForm";
 import { PayButton } from "@/components/PayButton";
-import { Project, Service } from "@/types";
+import { Service } from "@/types";
+import type { ReactElement } from "react";
 
-const card = "rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6";
-const pill = "rounded-full border border-zinc-800 bg-zinc-900/40 px-3 py-1 text-xs text-zinc-300";
-const tag = "rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-[13px] text-zinc-300";
+/* ---------- design tokens ---------- */
+const eyebrow =
+  "text-xs font-semibold uppercase tracking-[0.25em] text-cyan-300/90";
+const h2 = "mt-3 text-3xl font-bold tracking-tight sm:text-4xl";
+const sub = "mt-3 max-w-2xl text-zinc-400 leading-relaxed";
+const card =
+  "rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur";
+const inputCls =
+  "w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-zinc-100 transition";
 
+/* ---------- tiny inline icons ---------- */
+const iconProps = {
+  width: 22,
+  height: 22,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.8,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+} as const;
+
+const IconChat = () => (
+  <svg {...iconProps}>
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+  </svg>
+);
+const IconBolt = () => (
+  <svg {...iconProps}>
+    <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z" />
+  </svg>
+);
+const IconCalendar = () => (
+  <svg {...iconProps}>
+    <rect x="3" y="4" width="18" height="18" rx="2" />
+    <path d="M16 2v4M8 2v4M3 10h18" />
+  </svg>
+);
+const IconCheck = () => (
+  <svg {...iconProps} width={16} height={16}>
+    <path d="M20 6 9 17l-5-5" />
+  </svg>
+);
+const IconPhone = () => (
+  <svg {...iconProps} width={18} height={18}>
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
+  </svg>
+);
+const IconMail = () => (
+  <svg {...iconProps} width={18} height={18}>
+    <rect x="2" y="4" width="20" height="16" rx="2" />
+    <path d="m22 7-10 6L2 7" />
+  </svg>
+);
+const IconPin = () => (
+  <svg {...iconProps} width={18} height={18}>
+    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+    <circle cx="12" cy="10" r="3" />
+  </svg>
+);
+const IconClock = () => (
+  <svg {...iconProps} width={18} height={18}>
+    <circle cx="12" cy="12" r="10" />
+    <path d="M12 6v6l4 2" />
+  </svg>
+);
+
+const serviceIcons: Record<string, () => ReactElement> = {
+  "website-audit": IconBolt,
+  "bugfix-session": IconCheck,
+  "landing-page-build": IconCalendar,
+};
+
+/* ---------- data ---------- */
 const services: Service[] = [
-  { 
+  {
     id: "website-audit",
     title: "Website Audit",
     priceCents: 9900,
     description:
       "30-45 min call + quick technical review (speed, SEO basics, conversion). You get a short action plan.",
     bookingUrl: "https://calendly.com/konstakrokhin/website-audit/",
-    stripePriceId: "price_1Sv1V1RvTRY7ZoKSdBWyzK04"
+    stripePriceId: "price_1Sv1V1RvTRY7ZoKSdBWyzK04",
   },
   {
     id: "bugfix-session",
@@ -26,7 +96,7 @@ const services: Service[] = [
     description:
       "60 min hands-on session. Fix 1-2 urgent issues (deploy, CSS, forms, tracking, minor backend fixes).",
     bookingUrl: "https://calendly.com/konstakrokhin/bugfix-session",
-    stripePriceId: "price_1Sv30FRvTRY7ZoKSzizosCzn"
+    stripePriceId: "price_1Sv30FRvTRY7ZoKSzizosCzn",
   },
   {
     id: "landing-page-build",
@@ -35,209 +105,330 @@ const services: Service[] = [
     description:
       "High-converting landing page + analytics + basic SEO + deployment. Normally 2-3 days turnaround.",
     bookingUrl: "https://calendly.com/konstakrokhin/landing-page-build",
-    stripePriceId: "price_1Sv30dRvTRY7ZoKSscBcRYhN"
-  }
+    stripePriceId: "price_1Sv30dRvTRY7ZoKSscBcRYhN",
+  },
 ];
 
 function formatCadFromCents(cents: number) {
   return new Intl.NumberFormat("en-CA", {
     style: "currency",
     currency: "CAD",
-    maximumFractionDigits: 0
+    maximumFractionDigits: 0,
   }).format(cents / 100);
 }
 
+const steps = [
+  {
+    n: "01",
+    title: "You describe the problem",
+    text: "A quick call about what's eating your time — missed inquiries, manual booking, repetitive messages.",
+  },
+  {
+    n: "02",
+    title: "I build a working prototype",
+    text: "You get a clickable demo like the ones below, usually within days — before you pay anything.",
+  },
+  {
+    n: "03",
+    title: "You approve, I ship it",
+    text: "We refine it together, then I deploy it to your site and make sure it keeps running.",
+  },
+];
+
 export const revalidate = 60;
 
-export default async function Home() {
-  const projects: Project[] = await listProjects() as Project[];
-
+export default function HomePage() {
   return (
-    <>
-    <div className="space-y-12">
-      {/* background glow */}
-      <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute left-[-200px] top-[-200px] h-[500px] w-[500px] rounded-full bg-indigo-500/15 blur-3xl" />
-        <div className="absolute right-[-200px] top-[150px] h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-3xl" />
+    <div className="relative">
+      {/* ambient background glows */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="animate-drift absolute -top-32 left-1/2 h-[480px] w-[720px] -translate-x-1/2 rounded-full bg-indigo-600/20 blur-[130px]" />
+        <div className="absolute top-[42rem] -left-40 h-[420px] w-[420px] rounded-full bg-cyan-500/10 blur-[130px]" />
+        <div className="absolute top-[95rem] -right-40 h-[420px] w-[420px] rounded-full bg-violet-600/10 blur-[130px]" />
       </div>
 
-      <section className="flex flex-col lg:flex-row">
-        <div className="lg:flex-1 space-y-8">
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
+        {/* ============ HERO ============ */}
+        <section className="pb-16 pt-14 text-center sm:pt-20">
+          <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-1.5 text-xs font-medium text-emerald-300">
+            <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+            Available for new projects
+          </span>
 
-          <p className="text-sm text-zinc-400 text-center">Konstantin Solutions · k-solutions.tech</p>
-
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl text-center">
-            AI chatbots that answer your customers.
-            <span className="block text-zinc-300">Automation that saves you hours.</span>
-          </h1>
-
-          <p className="text-lg text-zinc-300 leading-relaxed mx-auto lg:mx-0 text-center">
-            I build chatbots and Python automation for small businesses in the GTA —
-            working prototype first, so you see the value before you pay.
+          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-zinc-500">
+            Konstantin Solutions · Toronto, Canada
           </p>
 
-          <div className="flex flex-wrap gap-3 justify-center">
-            <a href="#demos" className="rounded-lg bg-zinc-100 px-5 py-2.5 text-sm font-semibold text-zinc-950 transition hover:bg-white">
+          <h1 className="mx-auto mt-4 max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+            AI chatbots that{" "}
+            <span className="text-gradient">answer your customers</span>.
+            <span className="mt-2 block">
+              Automation that <span className="text-gradient">saves you hours</span>.
+            </span>
+          </h1>
+
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">
+            I&apos;m Konstantin — a software engineer with 7+ years of
+            production experience. I build chatbots and Python automation for
+            small businesses in the GTA. Working prototype first, so you see
+            the value before you pay.
+          </p>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <a
+              href="#demos"
+              className="rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-400 px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition hover:shadow-indigo-500/40 hover:brightness-110"
+            >
               Try the live demos
             </a>
-            <a href="#contact" className="rounded-lg border border-zinc-800 bg-zinc-950 px-5 py-2.5 text-sm font-medium text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-900 hover:text-white">
+            <a
+              href="#contact"
+              className="rounded-xl border border-white/15 bg-white/5 px-7 py-3 text-sm font-semibold text-zinc-100 backdrop-blur transition hover:border-white/30 hover:bg-white/10"
+            >
               Get in touch
             </a>
           </div>
 
-          <p className="text-sm text-zinc-400 text-center">
+          <p className="mt-5 text-sm text-zinc-500">
             Prefer to talk?{" "}
-            <a href={`tel:${BUSINESS.phoneE164}`} className="underline hover:text-zinc-200">{BUSINESS.phoneDisplay}</a>
-            {" · "}
-            <a href={`mailto:${BUSINESS.email}`} className="underline hover:text-zinc-200">{BUSINESS.email}</a>
+            <a
+              href={`tel:${BUSINESS.phoneE164}`}
+              className="font-medium text-cyan-300 hover:underline"
+            >
+              {BUSINESS.phoneDisplay}
+            </a>{" "}
+            ·{" "}
+            <a
+              href={`mailto:${BUSINESS.email}`}
+              className="font-medium text-cyan-300 hover:underline"
+            >
+              {BUSINESS.email}
+            </a>
           </p>
 
-          <div className="flex flex-wrap gap-2 justify-center">
-            <span className={pill}>AI Chatbots</span>
-            <span className={pill}>Python Automation</span>
-            <span className={pill}>Next.js</span>
-          </div>
-        </div>
+          <dl className="mx-auto mt-12 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-3">
+            {[
+              { v: "7+", l: "years of production experience" },
+              { v: "6", l: "live prototypes you can try now" },
+              { v: "GTA", l: "based in Toronto, serving local businesses" },
+            ].map((s) => (
+              <div key={s.l} className="rounded-2xl border border-white/10 bg-white/[0.02] px-4 py-5">
+                <dt className="sr-only">{s.l}</dt>
+                <dd className="text-3xl font-bold text-gradient">{s.v}</dd>
+                <dd className="mt-1 text-xs leading-snug text-zinc-500">{s.l}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
 
-        <div className="lg:w-60 space-y-4">
-          <div className={card}>
-            <p className="text-xs uppercase tracking-wide text-zinc-400">What's Konstantin Solutions?</p>
-            <p className="mt-3 text-sm text-zinc-200 leading-relaxed">
-              Konstantin Solutions is a software consultancy focused on building reliable web and AI-powered solutions for businesses.
-            </p>
-          </div>
+        {/* ============ TRUST STRIP ============ */}
+        <section className="border-y border-white/10 py-5">
+          <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm text-zinc-300">
+            {[
+              "Working prototype before you pay",
+              "Fixed, transparent pricing",
+              "Direct line to the engineer — no agency",
+            ].map((t) => (
+              <li key={t} className="flex items-center gap-2">
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400/15 text-emerald-300">
+                  <IconCheck />
+                </span>
+                {t}
+              </li>
+            ))}
+          </ul>
+        </section>
 
-          <div className={card}>
-            <p className="text-xs uppercase tracking-wide text-zinc-400">Team's Expertise</p>
-            <p className="mt-3 text-sm text-zinc-200 leading-relaxed">
-              Led by a full-stack engineer with 7+ years of production experience.
-            </p>
-          </div>
+        {/* ============ SERVICES ============ */}
+        <section id="services" className="scroll-mt-24 py-20">
+          <p className={eyebrow}>Services</p>
+          <h2 className={h2}>
+            Fixed-price services, <span className="text-gradient">no surprises</span>
+          </h2>
+          <p className={sub}>
+            Start small with a fixed-price service, or talk to me about a
+            custom chatbot or automation project.
+          </p>
 
-          <div className={card}>
-            <p className="text-xs uppercase tracking-wide text-zinc-400">How I help businesses?</p>
-            <p className="mt-3 text-sm text-zinc-200 leading-relaxed">
-              I help startups and small companies automate workflows, improve performance, and ship maintainable software.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      <section className="space-y-4">
-
-        <h2 className="text-xl font-semibold tracking-tight"> Services </h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((s) => (
-            <article key={s.id} className={`${card} transition hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/40`}>
-
-              <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <h3 className="text-base font-semibold leading-snug">{s.title}</h3>
-                  <p className="mt-1 text-sm text-zinc-400"> {formatCadFromCents(s.priceCents)} </p>
-                </div>
-
-                {s.stripePriceId ? (
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {services.map((s) => {
+              const Icon = serviceIcons[s.id] ?? IconBolt;
+              return (
+                <article key={s.id} className={`${card} glow-card flex flex-col`}>
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/40 to-cyan-400/20 text-cyan-300">
+                    <Icon />
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold">{s.title}</h3>
+                  <p className="mt-1 text-3xl font-bold tracking-tight">
+                    {formatCadFromCents(s.priceCents)}{" "}
+                    <span className="text-sm font-normal text-zinc-500">CAD</span>
+                  </p>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-zinc-400">
+                    {s.description}
+                  </p>
+                  <div className="mt-6 space-y-2">
+                    <a
+                      href={s.bookingUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-center text-sm font-medium text-zinc-100 transition hover:border-white/30 hover:bg-white/10"
+                    >
+                      Book appointment
+                    </a>
                     <PayButton priceId={s.stripePriceId} />
-                ) : null}
-              </div>
-
-              {s.description ? (
-                <p className="mt-3 line-clamp-3 text-sm text-zinc-300 leading-relaxed">
-                  {s.description}
-                </p>
-              ) : (
-                <p className="mt-3 text-sm text-zinc-500">No description yet.</p>
-              )}
-
-              <div className="mt-4 flex gap-2">
-                {s.bookingUrl ? (
-                  <a href={s.bookingUrl} target="_blank" rel="noreferrer" className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-s font-medium text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-900 hover:text-white">Book Appointment</a>
-                ) : null
-                  
-                }
-              </div>
-            </article>
-
-        ))}
-        </div>
-
-      </section >
-
-      <section className="space-y-4">
-        <h2 className="text-xl font-semibold tracking-tight">How it works</h2>
-        <div className="grid gap-6 sm:grid-cols-3">
-          {[
-            {
-              step: "1",
-              title: "You describe the problem",
-              text: "A quick call about what's eating your time — missed inquiries, manual booking, repetitive messages.",
-            },
-            {
-              step: "2",
-              title: "I build a working prototype",
-              text: "You get a clickable demo like the ones below, usually within days — before you pay anything.",
-            },
-            {
-              step: "3",
-              title: "You approve, I ship it",
-              text: "We refine it together, then I deploy it and make sure it keeps running.",
-            },
-          ].map((s) => (
-            <article key={s.step} className={card}>
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-100 text-sm font-bold text-zinc-950">
-                {s.step}
-              </div>
-              <h3 className="mt-3 text-base font-semibold leading-snug">{s.title}</h3>
-              <p className="mt-2 text-sm text-zinc-300 leading-relaxed">{s.text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="demos" className="space-y-4 scroll-mt-24">
-        <div>
-          <h2 className="text-xl font-semibold tracking-tight">Demos</h2>
-          <span className="text-sm text-zinc-400">{prototypeDemos.length} live prototypes</span>
-          <div className="mt-1 text-xs text-zinc-500">
-            Interactive concept prototypes. Not affiliated with any real business.
+                  </div>
+                </article>
+              );
+            })}
           </div>
-        </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {prototypeDemos.map((p) => (
-            <article
-              key={p.url}
-              className={`${card} transition hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/40`}
-            >
-              <div className="text-xs text-zinc-400">{p.tag}</div>
-              <h3 className="mt-1 text-base font-semibold leading-snug">
-                {p.title}
-              </h3>
-              <p className="mt-3 text-sm text-zinc-300 leading-relaxed">
-                {p.blurb}
-              </p>
-              <div className="mt-4">
-                <a
-                  href={p.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-lg border border-zinc-800 bg-zinc-950 px-6 py-2 text-s font-medium text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-900 hover:text-white"
-                >
-                  Try it ↗
-                </a>
+          <p className="mt-8 text-center text-sm text-zinc-500">
+            Need a custom chatbot or automation?{" "}
+            <a href="#contact" className="font-medium text-cyan-300 hover:underline">
+              Tell me about your project →
+            </a>
+          </p>
+        </section>
+
+        {/* ============ HOW IT WORKS ============ */}
+        <section className="border-t border-white/10 py-20">
+          <p className={eyebrow}>Process</p>
+          <h2 className={h2}>
+            From idea to live in <span className="text-gradient">three steps</span>
+          </h2>
+          <p className={sub}>
+            No lengthy specs, no agency runaround. You talk to the person
+            building it.
+          </p>
+
+          <ol className="mt-12 grid gap-6 md:grid-cols-3">
+            {steps.map((s) => (
+              <li key={s.n} className={`${card} glow-card relative`}>
+                <span className="text-gradient text-5xl font-bold tracking-tight">
+                  {s.n}
+                </span>
+                <h3 className="mt-3 text-lg font-semibold">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-400">{s.text}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        {/* ============ DEMOS ============ */}
+        <section id="demos" className="scroll-mt-24 border-t border-white/10 py-20">
+          <p className={eyebrow}>Demos</p>
+          <h2 className={h2}>
+            Try the <span className="text-gradient">prototypes</span>
+          </h2>
+          <p className={sub}>
+            Real, clickable builds — not mockups. Concept pieces, not
+            affiliated with any real business.
+          </p>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {prototypeDemos.map((p) => (
+              <article key={p.url} className={`${card} glow-card flex flex-col`}>
+                <span className="inline-flex w-fit rounded-full border border-indigo-400/30 bg-indigo-400/10 px-3 py-1 text-xs font-medium text-indigo-300">
+                  {p.tag}
+                </span>
+                <h3 className="mt-3 text-base font-semibold leading-snug">
+                  {p.title}
+                </h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-400">
+                  {p.blurb}
+                </p>
+                <div className="mt-5">
+                  <a
+                    href={p.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-block rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-400 px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-indigo-500/20 transition hover:shadow-indigo-500/40 hover:brightness-110"
+                  >
+                    Try it ↗
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* ============ CONTACT ============ */}
+        <section id="contact" className="scroll-mt-24 border-t border-white/10 py-20">
+          <p className={eyebrow}>Contact</p>
+          <h2 className={h2}>
+            Let&apos;s build something <span className="text-gradient">useful</span>
+          </h2>
+          <p className={sub}>
+            Tell me about your business and what&apos;s eating your time. I
+            reply within one business day.
+          </p>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-5">
+            <div className="space-y-4 lg:col-span-2">
+              <div className={card}>
+                <ul className="space-y-4 text-sm">
+                  <li className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-indigo-500/15 text-indigo-300">
+                      <IconPhone />
+                    </span>
+                    <span>
+                      <span className="block text-xs text-zinc-500">Phone</span>
+                      <a href={`tel:${BUSINESS.phoneE164}`} className="font-medium text-zinc-100 hover:text-cyan-300">
+                        {BUSINESS.phoneDisplay}
+                      </a>
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-indigo-500/15 text-indigo-300">
+                      <IconMail />
+                    </span>
+                    <span>
+                      <span className="block text-xs text-zinc-500">Email</span>
+                      <a href={`mailto:${BUSINESS.email}`} className="font-medium text-zinc-100 hover:text-cyan-300">
+                        {BUSINESS.email}
+                      </a>
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-indigo-500/15 text-indigo-300">
+                      <IconPin />
+                    </span>
+                    <span>
+                      <span className="block text-xs text-zinc-500">Area</span>
+                      <span className="font-medium text-zinc-100">{BUSINESS.serviceArea}</span>
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-indigo-500/15 text-indigo-300">
+                      <IconClock />
+                    </span>
+                    <span>
+                      <span className="block text-xs text-zinc-500">Hours</span>
+                      <span className="font-medium text-zinc-100">
+                        {BUSINESS.hours[0].label} · {BUSINESS.hours[0].opens} – {BUSINESS.hours[0].closes} {BUSINESS.timezone}
+                      </span>
+                    </span>
+                  </li>
+                </ul>
               </div>
-            </article>
-          ))}
-        </div>
-      </section>
 
-      <section id="contact" className="space-y-4 scroll-mt-24">
-        <h2 className="text-xl font-semibold tracking-tight">Contact</h2>
-        <ContactForm cardClassName={card} />
-      </section>
+              <div className="rounded-2xl border border-indigo-500/30 bg-gradient-to-br from-indigo-500/15 to-cyan-400/10 p-6">
+                <p className="flex items-center gap-2 font-semibold">
+                  <IconChat /> Not sure where to start?
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                  Book a free intro call — we&apos;ll figure out in 15 minutes
+                  whether a chatbot or automation makes sense for you.
+                </p>
+              </div>
+            </div>
 
+            <div className={`${card} lg:col-span-3`}>
+              <ContactForm cardClassName={inputCls} />
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
-    </>
   );
 }
