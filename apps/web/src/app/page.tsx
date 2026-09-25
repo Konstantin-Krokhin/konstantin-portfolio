@@ -84,7 +84,7 @@ const services: Service[] = [
   {
     id: "website-audit",
     title: "Website Audit",
-    priceCents: 9900,
+    priceCents: 24900,
     description:
       "30-45 min call + quick technical review (speed, SEO basics, conversion). You get a short action plan.",
     bookingUrl: "https://calendly.com/konstakrokhin/website-audit/",
@@ -93,7 +93,7 @@ const services: Service[] = [
   {
     id: "bugfix-session",
     title: "Bugfix Session",
-    priceCents: 14900,
+    priceCents: 44900,
     description:
       "60 min hands-on session. Fix 1-2 urgent issues (deploy, CSS, forms, tracking, minor backend fixes).",
     bookingUrl: "https://calendly.com/konstakrokhin/bugfix-session",
@@ -102,7 +102,7 @@ const services: Service[] = [
   {
     id: "landing-page-build",
     title: "Landing Page Build",
-    priceCents: 39900,
+    priceCents: 190000,
     description:
       "High-converting landing page + analytics + basic SEO + deployment. Normally 2-3 days turnaround.",
     bookingUrl: "https://calendly.com/konstakrokhin/landing-page-build",
@@ -210,7 +210,7 @@ export default function HomePage() {
           <dl className="mx-auto mt-12 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-3">
             {[
               { v: "7+", l: "years of production experience" },
-              { v: "6", l: "live prototypes you can try now" },
+              { v: "15", l: "live prototypes you can try now" },
               { v: "GTA", l: "based in Toronto, serving local businesses" },
             ].map((s) => (
               <div key={s.l} className="rounded-2xl border border-white/10 bg-white/[0.02] px-4 py-5">
