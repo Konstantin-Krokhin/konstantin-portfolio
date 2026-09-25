@@ -1,4 +1,5 @@
 import { prototypeDemos } from "@/app/demo/_demo";
+import DemoCarousel from "@/components/DemoCarousel";
 import { BUSINESS } from "@/content/business";
 import ContactForm from "@/components/ContactForm";
 import { PayButton } from "@/components/PayButton";
@@ -325,31 +326,13 @@ export default function HomePage() {
             affiliated with any real business.
           </p>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {prototypeDemos.map((p) => (
-              <article key={p.url} className={`${card} glow-card flex flex-col`}>
-                <span className="inline-flex w-fit rounded-full border border-indigo-400/30 bg-indigo-400/10 px-3 py-1 text-xs font-medium text-indigo-300">
-                  {p.tag}
-                </span>
-                <h3 className="mt-3 text-base font-semibold leading-snug">
-                  {p.title}
-                </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-400">
-                  {p.blurb}
-                </p>
-                <div className="mt-5">
-                  <a
-                    href={p.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-block rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-400 px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-indigo-500/20 transition hover:shadow-indigo-500/40 hover:brightness-110"
-                  >
-                    Try it ↗
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
+          <DemoCarousel demos={prototypeDemos} />
+          <p className="mt-6 text-sm text-zinc-500">
+            Want the full list on one page?{" "}
+            <a href="/demo" className="text-cyan-300 hover:text-cyan-200">
+              Browse all prototypes →
+            </a>
+          </p>
         </section>
 
         {/* ============ CONTACT ============ */}
