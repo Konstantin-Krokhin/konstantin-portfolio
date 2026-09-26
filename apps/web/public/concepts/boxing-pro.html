@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artem Artiukhov — Boxing Coach, Toronto</title>
+<meta name="description" content="Private boxing coaching in Toronto with Artem Artiukhov, Master of Sports of Ukraine. 15+ years of experience. Book a free trial.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0c; --panel:#131316; --panel2:#1a1a1f;
+    --red:#e10600; --red-soft:rgba(225,6,0,.12);
+    --ink:#f4f2ed; --muted:#a7a7b0; --faint:#6d6d76;
+    --line:rgba(255,255,255,.09);
+    --r:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--red);color:#fff}
+  h1,h2,.display{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.98}
+  .serif-i{font-family:'Playfair Display',Georgia,serif;font-style:italic;text-transform:none;letter-spacing:0;color:var(--red)}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+  .ribbon{position:fixed;top:0;left:0;right:0;z-index:70;background:var(--red);color:#fff;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:9px 16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+  /* ---------- nav ---------- */
+  nav{position:fixed;top:37px;left:0;right:0;z-index:60;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+  nav.scrolled{background:rgba(10,10,12,.82);backdrop-filter:blur(14px);border-color:var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .mono{width:40px;height:40px;border-radius:12px;background:var(--red);display:grid;place-items:center;font-family:Anton,sans-serif;font-size:18px;color:#fff}
+  .brand b{font-size:15px;letter-spacing:.02em;display:block;line-height:1.2}
+  .brand small{font-size:11px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase}
+  .nlinks{display:flex;gap:30px;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+  .nlinks a{text-decoration:none;color:var(--muted);transition:color .2s;position:relative}
+  .nlinks a:hover{color:#fff}
+  .nlinks a::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--red);transition:width .25s}
+  .nlinks a:hover::after{width:100%}
+  .nav-cta{display:flex;gap:12px;align-items:center}
+  .ig-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;text-decoration:none;transition:border-color .2s,transform .2s}
+  .ig-btn:hover{border-color:var(--red);transform:translateY(-2px)}
+  .ig-btn svg{width:19px;height:19px;fill:#fff}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--red);color:#fff;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:16px 32px;border:none;border-radius:999px;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(225,6,0,.35);background:#f20b06}
+  .btn.ghost{background:rgba(255,255,255,.06);border:1px solid var(--line)}
+  .btn.ghost:hover{background:rgba(255,255,255,.1);box-shadow:none}
+  .btn.sm{padding:12px 24px;font-size:12px}
+  #burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;color:#fff;font-size:20px;width:44px;height:44px;cursor:pointer}
+  @media(max-width:900px){.nlinks{display:none}#burger{display:block}.nav-cta .ig-btn,.nav-cta .btn{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:100svh;padding-top:37px;display:flex;align-items:flex-end;overflow:hidden}
+  .hero .bg{position:absolute;inset:0}
+  .hero .bg img{width:100%;height:100%;object-fit:cover;object-position:center 22%;transform:scale(1.06);animation:heroZoom 14s ease-out forwards}
+  @keyframes heroZoom{to{transform:scale(1)}}
+  .hero .shade{position:absolute;inset:0;background:
+    linear-gradient(180deg,rgba(10,10,12,.62) 0%,rgba(10,10,12,.18) 38%,rgba(10,10,12,.55) 68%,var(--bg) 100%),
+    linear-gradient(100deg,rgba(10,10,12,.72) 0%,transparent 60%)}
+  .hero .wrap{position:relative;z-index:2;width:100%;padding-top:140px;padding-bottom:56px}
+  .hero .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);padding:9px 18px;border-radius:999px;margin-bottom:26px}
+  .hero .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 12px var(--red);animation:pulse 2s infinite}
+  @keyframes pulse{50%{opacity:.4}}
+  .hero h1{font-size:clamp(58px,11vw,148px);max-width:12ch}
+  .hero h1 .serif-i{font-size:.92em}
+  .hero .sub{margin:22px 0 34px;max-width:520px;font-size:clamp(15px,2vw,18px);color:#d8d8de}
+  .hero .sub b{color:#fff}
+  .hero .ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-meta{display:flex;gap:0;margin-top:56px;border-top:1px solid rgba(255,255,255,.14);max-width:760px}
+  .hero-meta div{flex:1;padding:20px 24px 0 0}
+  .hero-meta div+div{padding-left:24px;border-left:1px solid rgba(255,255,255,.14)}
+  .hero-meta b{font-family:Anton,sans-serif;font-size:30px;display:block;letter-spacing:.02em}
+  .hero-meta b em{font-style:normal;color:var(--red)}
+  .hero-meta span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  @media(max-width:640px){.hero-meta{flex-wrap:wrap;gap:18px}.hero-meta div{flex:1 1 40%}.hero-meta div+div{padding-left:0;border-left:none}}
+  .scroll-hint{position:absolute;right:34px;bottom:40px;z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--muted);font-size:10px;letter-spacing:.3em;text-transform:uppercase;writing-mode:vertical-rl}
+  .scroll-hint::after{content:"";width:1px;height:56px;background:linear-gradient(var(--red),transparent);animation:drop 1.8s infinite}
+  @keyframes drop{0%{transform:scaleY(0);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}56%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+  @media(max-width:900px){.scroll-hint{display:none}}
+
+  /* ---------- marquee ---------- */
+  .mq-clip{overflow:hidden;padding:34px 0 6px;margin:0;position:relative;z-index:3}
+  .marquee{background:var(--red);overflow:hidden;padding:14px 0;transform:rotate(-1.2deg) scale(1.03)}
+  .mq-track{display:flex;gap:0;width:max-content;animation:mq 26s linear infinite}
+  .marquee span{font-family:Anton,sans-serif;font-size:22px;letter-spacing:.1em;color:#fff;padding:0 28px;white-space:nowrap}
+  @keyframes mq{to{transform:translateX(-50%)}}
+
+  /* ---------- sections ---------- */
+  section{padding:110px 0;position:relative;scroll-margin-top:90px}
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--red);margin-bottom:18px}
+  .kicker::before{content:"";width:34px;height:2px;background:var(--red)}
+  .h2{font-size:clamp(40px,6vw,76px);margin-bottom:16px}
+  .lede{color:var(--muted);font-size:17px;max-width:620px}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:64px;align-items:center;margin-top:56px}
+  @media(max-width:940px){.about-grid{grid-template-columns:1fr}}
+  .photo-card{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
+  .photo-card img{width:100%;height:560px;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+  .photo-card:hover img{transform:scale(1.04)}
+  .photo-card .cap{position:absolute;left:18px;bottom:18px;background:rgba(10,10,12,.72);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:12px;padding:12px 18px;font-size:13px}
+  .photo-card .cap b{display:block;font-size:14px}
+  .photo-card .cap span{color:var(--muted);font-size:12px}
+  .photo-card::before{content:"";position:absolute;inset:0;border-radius:var(--r);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);pointer-events:none;z-index:2}
+  .tick{position:absolute;top:-24px;right:-24px;width:120px;height:120px;z-index:3;animation:spin 16s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .about-copy p{color:#cfcfd6;font-size:16.5px;margin-bottom:18px}
+  .about-copy p b{color:#fff}
+  .cred-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:30px 0 36px}
+  @media(max-width:520px){.cred-list{grid-template-columns:1fr}}
+  .cred{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;transition:border-color .25s,transform .25s}
+  .cred:hover{border-color:rgba(225,6,0,.5);transform:translateY(-3px)}
+  .cred .ic{font-size:22px;margin-bottom:8px}
+  .cred b{display:block;font-size:14px;margin-bottom:4px}
+  .cred span{font-size:12.5px;color:var(--muted)}
+  .quote{border-left:3px solid var(--red);padding:4px 0 4px 24px;margin:8px 0 34px}
+  .quote p{font-family:'Playfair Display',serif;font-style:italic;font-size:21px;color:#e8e6df;line-height:1.5}
+  .quote cite{display:block;margin-top:10px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-style:normal;font-family:Inter,sans-serif}
+
+  /* ---------- gallery ---------- */
+  #gallery{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
+  .g-strip{display:flex;gap:18px;margin-top:54px;overflow-x:auto;padding:6px 28px 22px;scroll-snap-type:x mandatory;scrollbar-width:none}
+  .g-strip::-webkit-scrollbar{display:none}
+  .g-item{position:relative;flex:0 0 clamp(240px,30vw,360px);height:440px;border-radius:var(--r);overflow:hidden;scroll-snap-align:start;border:1px solid var(--line);cursor:pointer}
+  .g-item img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s}
+  .g-item:hover img{transform:scale(1.07)}
+  .g-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,10,12,.75));opacity:.85}
+  .g-item figcaption{position:absolute;left:20px;bottom:18px;z-index:2;font-size:13px;font-weight:600}
+  .g-item figcaption span{display:block;font-size:11px;font-weight:500;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+  .g-hint{display:flex;align-items:center;gap:12px;color:var(--faint);font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-top:8px}
+
+  /* ---------- programs ---------- */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+  @media(max-width:940px){.tiers{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}}
+  .tier{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:40px 34px;display:flex;flex-direction:column;transition:transform .3s,border-color .3s,box-shadow .3s;overflow:hidden}
+  .tier:hover{transform:translateY(-6px);border-color:rgba(225,6,0,.55);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+  .tier.hot{background:linear-gradient(160deg,#1c0d0c,#131316 55%);border-color:rgba(225,6,0,.6)}
+  .tier .flag{position:absolute;top:18px;right:-38px;transform:rotate(38deg);background:var(--red);color:#fff;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;padding:7px 44px}
+  .tier .tk{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+  .tier h3{font-family:Anton,sans-serif;font-size:30px;text-transform:uppercase;letter-spacing:.02em;margin-bottom:6px}
+  .tier .p{font-family:Anton,sans-serif;font-size:52px;margin:10px 0 2px}
+  .tier .p small{font-family:Inter,sans-serif;font-size:13px;color:var(--muted);letter-spacing:.04em}
+  .tier ul{list-style:none;margin:24px 0 32px;display:grid;gap:12px;font-size:14px;color:var(--muted);flex:1}
+  .tier li{display:flex;gap:10px;align-items:flex-start}
+  .tier li::before{content:"✓";color:var(--red);font-weight:800;flex:none}
+  .fine{font-size:12px;color:var(--faint);text-align:center;margin-top:26px}
+
+  /* ---------- numbers ---------- */
+  #numbers{background:radial-gradient(900px 420px at 50% 0%,rgba(225,6,0,.14),transparent 70%),var(--bg)}
+  .nums{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:54px}
+  @media(max-width:760px){.nums{grid-template-columns:repeat(2,1fr)}}
+  .num{background:var(--bg);padding:44px 24px;text-align:center}
+  .num b{font-family:Anton,sans-serif;font-size:clamp(44px,5vw,64px);display:block;background:linear-gradient(180deg,#fff,#8a8a92);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .num span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+
+  /* ---------- testimonials ---------- */
+  .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:54px}
+  @media(max-width:940px){.t-grid{grid-template-columns:1fr}}
+  .t{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:36px 32px;position:relative;transition:transform .3s,border-color .3s}
+  .t:hover{transform:translateY(-4px);border-color:rgba(225,6,0,.4)}
+  .t .qm{font-family:'Playfair Display',serif;font-size:64px;line-height:1;color:var(--red);opacity:.85}
+  .t p{font-size:15.5px;color:#d5d3cc;font-style:italic;margin:6px 0 22px}
+  .t .w{display:flex;align-items:center;gap:14px}
+  .t .ava{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--red),#7a0300);display:grid;place-items:center;font-family:Anton,sans-serif;font-size:16px}
+  .t .w b{display:block;font-size:14px;font-style:normal}
+  .t .w span{font-size:12px;color:var(--muted);font-style:normal}
+  .stars{color:var(--red);letter-spacing:5px;font-size:13px;margin-bottom:14px}
+
+  /* ---------- instagram ---------- */
+  #insta{background:linear-gradient(180deg,var(--panel),var(--bg));border-top:1px solid var(--line);text-align:center}
+  .ig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:50px 0 40px}
+  @media(max-width:760px){.ig-grid{grid-template-columns:repeat(2,1fr)}}
+  .ig-grid a{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);aspect-ratio:1}
+  .ig-grid img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+  .ig-grid a:hover img{transform:scale(1.08)}
+  .ig-grid a::after{content:"↗ @artemartyukhov";position:absolute;inset:auto 0 0 0;padding:34px 14px 12px;background:linear-gradient(transparent,rgba(10,10,12,.85));font-size:11px;font-weight:700;letter-spacing:.1em;opacity:0;transition:opacity .3s;text-align:left}
+  .ig-grid a:hover::after{opacity:1}
+
+  /* ---------- faq ---------- */
+  .faq{max-width:800px;margin-top:50px}
+  .faq details{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden;transition:border-color .25s}
+  .faq details[open]{border-color:rgba(225,6,0,.45)}
+  .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:22px 26px;font-weight:600;font-size:16px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .pm{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--red);font-size:18px;transition:transform .3s,background .3s}
+  .faq details[open] .pm{transform:rotate(45deg);background:var(--red);color:#fff;border-color:var(--red)}
+  .faq .a{padding:0 26px 24px;color:var(--muted);font-size:15px;max-width:640px}
+
+  /* ---------- cta band ---------- */
+  .band{position:relative;overflow:hidden;border-radius:26px;margin:40px 0;padding:90px 40px;text-align:center;background:
+    linear-gradient(rgba(10,10,12,.55),rgba(10,10,12,.82)),
+    url('artem/sting-closeup.jpg') center 30%/cover;border:1px solid var(--line)}
+  .band h2{font-size:clamp(42px,6vw,84px);margin-bottom:16px}
+  .band p{color:#d8d8de;max-width:520px;margin:0 auto 34px;font-size:17px}
+
+  /* ---------- contact ---------- */
+  .c-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;margin-top:54px;align-items:start}
+  @media(max-width:940px){.c-grid{grid-template-columns:1fr}}
+  .c-rows{display:grid;gap:16px;margin-top:34px}
+  .c-row{display:flex;gap:18px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 22px;text-decoration:none;transition:border-color .25s,transform .25s}
+  .c-row:hover{border-color:rgba(225,6,0,.5);transform:translateX(6px)}
+  .c-row .ic{width:48px;height:48px;flex:none;border-radius:14px;background:var(--red-soft);display:grid;place-items:center;font-size:22px}
+  .c-row b{display:block;font-size:15px}
+  .c-row span{font-size:13px;color:var(--muted)}
+  form{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:40px 36px;display:grid;gap:18px}
+  form label{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  form input,form select,form textarea{background:var(--bg);border:1px solid var(--line);border-radius:12px;color:#fff;padding:15px 17px;font-size:15px;font-family:inherit;width:100%;transition:border-color .2s}
+  form input:focus,form select:focus,form textarea:focus{outline:none;border-color:var(--red)}
+  #form-ok{display:none;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.4);color:#86efac;padding:16px;border-radius:12px;font-size:14px}
+
+  footer{border-top:1px solid var(--line);padding:40px 0;color:var(--faint);font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center}
+  footer .fl{display:flex;align-items:center;gap:10px}
+
+  /* ---------- chat ---------- */
+  #chat-fab{position:fixed;right:24px;bottom:24px;z-index:90;width:62px;height:62px;border-radius:50%;background:var(--red);border:none;color:#fff;font-size:26px;cursor:pointer;box-shadow:0 10px 34px rgba(225,6,0,.5);transition:transform .2s}
+  #chat-fab:hover{transform:scale(1.08)}
+  #chat{position:fixed;right:24px;bottom:98px;z-index:90;width:min(370px,calc(100vw - 48px));height:500px;background:#141417;border:1px solid var(--line);border-radius:20px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.65)}
+  #chat.open{display:flex;animation:pop .25s cubic-bezier(.2,.9,.3,1.2)}
+  @keyframes pop{from{transform:translateY(16px) scale(.97);opacity:0}}
+  #chat header{position:static;background:linear-gradient(120deg,#c00500,var(--red));border:none;padding:16px 20px;display:flex;align-items:center;gap:12px}
+  #chat header .av{width:40px;height:40px;border-radius:50%;background:#fff;color:var(--red);display:grid;place-items:center;font-family:Anton,sans-serif}
+  #chat header b{display:block;font-size:15px;color:#fff}
+  #chat header small{color:rgba(255,255,255,.82);font-size:12px}
+  #chat header button{margin-left:auto;background:none;border:none;color:#fff;font-size:22px;cursor:pointer}
+  #msgs{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:10px}
+  .msg{max-width:84%;padding:11px 15px;border-radius:16px;font-size:14px;line-height:1.5;animation:pop .2s}
+  .msg.bot{background:#202027;align-self:flex-start;border-bottom-left-radius:5px}
+  .msg.me{background:var(--red);color:#fff;align-self:flex-end;border-bottom-right-radius:5px}
+  #chat form{position:static;background:#141417;border:none;border-top:1px solid var(--line);padding:14px;display:flex;gap:10px}
+  #chat input{flex:1;background:#0a0a0c;border:1px solid var(--line);color:#fff;padding:12px 14px;border-radius:12px;font-size:14px}
+  #chat form .btn{padding:12px 18px;font-size:12px;border-radius:12px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;padding:0 18px 14px}
+  .chips button{background:#202027;border:1px solid var(--line);color:#d5d3cc;font-size:12px;padding:8px 14px;border-radius:999px;cursor:pointer;transition:border-color .2s}
+  .chips button:hover{border-color:var(--red)}
+  .typing{display:flex;gap:5px;padding:12px 16px}
+  .typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:tp 1s infinite}
+  .typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+  @keyframes tp{40%{transform:translateY(-5px);opacity:1}0%,80%,100%{opacity:.4}}
+
+  /* mobile menu */
+  #mmenu{position:fixed;inset:0;z-index:80;background:rgba(10,10,12,.97);backdrop-filter:blur(10px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+  #mmenu.open{display:flex}
+  #mmenu a{font-family:Anton,sans-serif;font-size:38px;text-transform:uppercase;text-decoration:none;padding:8px}
+  #mmenu a:hover{color:var(--red)}
+  #mmenu .x{position:absolute;top:24px;right:28px;background:none;border:none;color:#fff;font-size:32px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="ribbon">Design concept for Artem Artiukhov — prototype, not a live site</div>
+
+<nav id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <span class="mono">AA</span>
+      <span><b>Artem Artiukhov</b><small>Boxing coach · Toronto</small></span>
+    </a>
+    <div class="nlinks">
+      <a href="#about">Coach</a><a href="#gallery">Gallery</a><a href="#programs">Programs</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a class="ig-btn" href="https://instagram.com/artemartyukhov" target="_blank" rel="noreferrer" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.1-4.8-1.7-4.9-4.9-.1-1.3-.1-1.6-.1-4.8s0-3.6.1-4.8C2.4 3.9 4 2.3 7.2 2.2c1.2-.1 1.6-.1 4.8-.1zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.2-9.4a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z"/></svg>
+      </a>
+      <a class="btn sm" href="#contact">Book free trial</a>
+      <button id="burger" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</nav>
+<div id="mmenu">
+  <button class="x" aria-label="Close">×</button>
+  <a href="#about">Coach</a><a href="#gallery">Gallery</a><a href="#programs">Programs</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+</div>
+
+<header class="hero" id="top">
+  <div class="bg"><img src="artem/hero-action.jpg" alt="Boxer with red headgear in the ring corner during a fight"></div>
+  <div class="shade"></div>
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span> Boxing coach · Toronto</span>
+    <h1>Boxing, taught<br>by a <span class="serif-i">master.</span></h1>
+    <p class="sub"><b>Artem Artiukhov</b> — Master of Sports of Ukraine, 15+ years of experience, Master's Degree in Physical Education. Private coaching for beginners, amateurs, and competitors.</p>
+    <div class="ctas">
+      <a class="btn" href="#contact">Book a free trial →</a>
+      <a class="btn ghost" href="https://instagram.com/artemartyukhov" target="_blank" rel="noreferrer">Watch on Instagram</a>
+    </div>
+    <div class="hero-meta">
+      <div><b>15<em>+</em></b><span>Years coaching</span></div>
+      <div><b>MS</b><span>Master of Sports, Ukraine</span></div>
+      <div><b>1st</b><span>Trial session free</span></div>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</header>
+
+<div class="mq-clip"><div class="marquee" aria-hidden="true">
+  <div class="mq-track" id="mq"></div>
+</div></div>
+
+<section id="about">
+  <div class="wrap">
+    <span class="kicker reveal">The coach</span>
+    <h2 class="h2 reveal">Forged in competition.<br>Refined through <span class="serif-i">teaching.</span></h2>
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="photo-card">
+          <img src="artem/coach-student.jpg" alt="Artem Artiukhov with his student after winning a medal">
+          <div class="cap"><b>Coach &amp; student</b><span>Real moments from Artem's Instagram @artemartyukhov</span></div>
+        </div>
+      </div>
+      <div class="about-copy reveal d1">
+        <p><b>Artem Artiukhov</b> earned the title Master of Sports of Ukraine in the ring — then spent 15+ years turning that experience into a coaching method of his own.</p>
+        <p>With a <b>Master's Degree in Physical Education</b>, his training is built on sports science: technique, conditioning, and fight intelligence developed as one system — for complete beginners, ambitious amateurs, and competitive boxers.</p>
+        <div class="cred-list">
+          <div class="cred"><div class="ic">🥇</div><b>Master of Sports</b><span>Ukraine — earned competing, not given</span></div>
+          <div class="cred"><div class="ic">🎓</div><b>MSc, Physical Education</b><span>Training grounded in sports science</span></div>
+          <div class="cred"><div class="ic">🥊</div><b>15+ years coaching</b><span>From first-timers to medalists</span></div>
+          <div class="cred"><div class="ic">🧠</div><b>Own method</b><span>Technique + conditioning + fight IQ</span></div>
+        </div>
+        <div class="quote">
+          <p>"The true measure of a boxing coach is not his personal fame, but the number of athletes he has helped to achieve success."</p>
+          <cite>— Artem Artiukhov</cite>
+        </div>
+        <a class="btn ghost" href="https://instagram.com/artemartyukhov" target="_blank" rel="noreferrer">More on Instagram ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <span class="kicker reveal">Real moments</span>
+    <h2 class="h2 reveal">From the gym<br>&amp; the <span class="serif-i">ring.</span></h2>
+    <p class="lede reveal">Actual photos from Artem's Instagram — fight nights, sparring days, and the team behind the medals.</p>
+  </div>
+  <div class="g-strip reveal">
+    <figure class="g-item"><img src="artem/embrace.jpg" alt="Two boxers embracing after a bout" loading="lazy"><figcaption>Respect after the bell<span>Fight night</span></figcaption></figure>
+    <figure class="g-item"><img src="artem/team.jpg" alt="Artem with his boxing team holding medals" loading="lazy"><figcaption>The team behind the medals<span>Atlas Boxing</span></figcaption></figure>
+    <figure class="g-item"><img src="artem/sting-closeup.jpg" alt="Close-up of a boxer in a red STING headguard" loading="lazy"><figcaption>Ready for war<span>Sparring day</span></figcaption></figure>
+    <figure class="g-item"><img src="artem/boxers-city.jpg" alt="Young boxers outdoors" loading="lazy"><figcaption>Next generation<span>Amateur team</span></figcaption></figure>
+    <figure class="g-item"><img src="artem/coach-casual.jpg" alt="Artem with a fellow coach" loading="lazy"><figcaption>Coach life<span>Behind the scenes</span></figcaption></figure>
+  </div>
+  <div class="wrap"><div class="g-hint reveal">← drag / scroll →</div></div>
+</section>
+
+<section id="programs">
+  <div class="wrap">
+    <span class="kicker reveal">Programs</span>
+    <h2 class="h2 reveal">Choose your<br>corner.</h2>
+    <p class="lede reveal">Every path starts with a free trial session — we assess your level, set goals, and build your plan.</p>
+    <div class="tiers">
+      <div class="tier reveal">
+        <div class="tk">Private</div><h3>1-on-1 Session</h3>
+        <div class="p">$90 <small>/ session*</small></div>
+        <ul><li>Fully personal program</li><li>Technique, pads &amp; conditioning</li><li>Flexible scheduling</li><li>Video analysis of your rounds</li></ul>
+        <a class="btn ghost" href="#contact" style="width:100%">Book trial</a>
+      </div>
+      <div class="tier hot reveal d1">
+        <span class="flag">Popular</span>
+        <div class="tk">Private · 10-pack</div><h3>The Program</h3>
+        <div class="p">$800 <small>/ 10 sessions*</small></div>
+        <ul><li>Everything in 1-on-1</li><li>Structured 10-week progression</li><li>Progress tracking &amp; reviews</li><li>Priority booking</li></ul>
+        <a class="btn" href="#contact" style="width:100%">Book trial</a>
+      </div>
+      <div class="tier reveal d2">
+        <div class="tk">Small group</div><h3>Squad Training</h3>
+        <div class="p">$40 <small>/ session*</small></div>
+        <ul><li>Max 4 people per group</li><li>All levels, beginners welcome</li><li>Fixed weekly schedule</li><li>The perfect first step</li></ul>
+        <a class="btn ghost" href="#contact" style="width:100%">Book trial</a>
+      </div>
+    </div>
+    <p class="fine">*Example pricing for the concept — final prices to be confirmed with Artem.</p>
+  </div>
+</section>
+
+<section id="numbers">
+  <div class="wrap">
+    <span class="kicker reveal">By the numbers</span>
+    <h2 class="h2 reveal">Proof, not <span class="serif-i">promises.</span></h2>
+    <div class="nums reveal">
+      <div class="num"><b>15+</b><span>Years coaching</span></div>
+      <div class="num"><b>1000+</b><span>Sessions coached</span></div>
+      <div class="num"><b>50+</b><span>Student medals*</span></div>
+      <div class="num"><b>0</b><span>Experience needed</span></div>
+    </div>
+    <p class="fine">*Placeholder figures for the concept — real numbers to be confirmed with Artem.</p>
+  </div>
+</section>
+
+<section id="voices">
+  <div class="wrap">
+    <span class="kicker reveal">Testimonials</span>
+    <h2 class="h2 reveal">Fighters talk.<br>Results <span class="serif-i">shout.</span></h2>
+    <div class="t-grid">
+      <div class="t reveal"><div class="qm">"</div><div class="stars">★★★★★</div><p>Six months from my first punch to my first amateur win. Artem builds you from zero — patiently, with zero shortcuts.</p><div class="w"><span class="ava">S</span><div><b>Student name*</b><span>Amateur boxer · 2 years</span></div></div></div>
+      <div class="t reveal d1"><div class="qm">"</div><div class="stars">★★★★★</div><p>Every session has a plan. The pad work is world-class — you feel yourself getting sharper every single week.</p><div class="w"><span class="ava">D</span><div><b>Student name*</b><span>Private client · 1 year</span></div></div></div>
+      <div class="t reveal d2"><div class="qm">"</div><div class="stars">★★★★★</div><p>I train for fitness, not fighting. Best workout of my life — and I genuinely look forward to morning sessions.</p><div class="w"><span class="ava">M</span><div><b>Student name*</b><span>Group training</span></div></div></div>
+    </div>
+    <p class="fine">*Placeholder quotes for the concept — real testimonials from Artem's students will go here.</p>
+  </div>
+</section>
+
+<section id="insta">
+  <div class="wrap">
+    <span class="kicker reveal" style="justify-content:center">Instagram</span>
+    <h2 class="h2 reveal">Follow the <span class="serif-i">journey.</span></h2>
+    <p class="lede reveal" style="margin:0 auto">Training clips, sparring days, and fight nights — straight from the gym floor.</p>
+    <div class="ig-grid reveal">
+      <a href="https://instagram.com/artemartyukhov" target="_blank" rel="noreferrer"><img src="artem/hero-action.jpg" alt="Instagram: fight night" loading="lazy"></a>
+      <a href="https://instagram.com/artemartyukhov" target="_blank" rel="noreferrer"><img src="artem/team.jpg" alt="Instagram: team" loading="lazy"></a>
+      <a href="https://instagram.com/artemartyukhov" target="_blank" rel="noreferrer"><img src="artem/embrace.jpg" alt="Instagram: after the bout" loading="lazy"></a>
+      <a href="https://instagram.com/artemartyukhov" target="_blank" rel="noreferrer"><img src="artem/sting-closeup.jpg" alt="Instagram: sparring" loading="lazy"></a>
+    </div>
+    <a class="btn reveal" href="https://instagram.com/artemartyukhov" target="_blank" rel="noreferrer">@artemartyukhov — Follow ↗</a>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <span class="kicker reveal">FAQ</span>
+    <h2 class="h2 reveal">Before you <span class="serif-i">ask.</span></h2>
+    <div class="faq reveal">
+      <details open><summary>I've never boxed. Can I still come? <span class="pm">+</span></summary><div class="a">Absolutely — most students start from zero. Your free trial is an assessment: we check your fitness, teach the stance and basic punches, and build your plan from there.</div></details>
+      <details><summary>What should I bring to the first session? <span class="pm">+</span></summary><div class="a">Workout clothes and indoor shoes. Wraps and gloves are provided for the trial — if you continue, we'll advise what to buy.</div></details>
+      <details><summary>Do you train teenagers? <span class="pm">+</span></summary><div class="a">Yes. Share your child's age when booking and we'll recommend the right format — group or private.</div></details>
+      <details><summary>Where do sessions take place? <span class="pm">+</span></summary><div class="a">Toronto — the exact gym location is shared when you book your trial. Private sessions can be arranged at partner gyms.</div></details>
+      <details><summary>Can you prepare me for competition? <span class="pm">+</span></summary><div class="a">Yes — competition prep is a specialty: sparring strategy, conditioning blocks, and corner work on fight day.</div></details>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="band reveal">
+    <h2>Your first session<br>is <span class="serif-i">free.</span></h2>
+    <p>No commitment. Come train, meet the coach, feel the gym — and leave with a plan.</p>
+    <a class="btn" href="#contact">Claim your free trial →</a>
+  </div>
+</div>
+
+<section id="contact">
+  <div class="wrap">
+    <span class="kicker reveal">Contact</span>
+    <h2 class="h2 reveal">Step into<br>the <span class="serif-i">ring.</span></h2>
+    <p class="lede reveal">Message directly or leave your number — replies usually within a few hours.</p>
+    <div class="c-grid">
+      <div class="reveal">
+        <div class="c-rows">
+          <a class="c-row" href="https://instagram.com/artemartyukhov" target="_blank" rel="noreferrer"><span class="ic">📸</span><div><b>@artemartyukhov</b><span>Training clips &amp; fight nights — fastest vibe check</span></div></a>
+          <div class="c-row"><span class="ic">💬</span><div><b>WhatsApp</b><span>Direct booking — number added in the live site</span></div></div>
+          <div class="c-row"><span class="ic">📍</span><div><b>Toronto, Ontario</b><span>Gym address shared when you book</span></div></div>
+          <div class="c-row"><span class="ic">🤖</span><div><b>AI assistant</b><span>Bottom-right corner — answers price &amp; schedule questions instantly</span></div></div>
+        </div>
+      </div>
+      <form id="lead-form" class="reveal d1">
+        <div id="form-ok">Thanks! This is a concept demo — in the live site your message would go straight to Artem.</div>
+        <div><label>Your name</label><input required placeholder="Name"></div>
+        <div><label>Phone / WhatsApp</label><input required placeholder="+1 ..."></div>
+        <div><label>I'm interested in</label><select><option>Free trial session</option><option>Private 1-on-1</option><option>10-session program</option><option>Small group</option><option>Youth training</option><option>Competition prep</option></select></div>
+        <div><label>About you <span style="text-transform:none;letter-spacing:0">(optional)</span></label><textarea rows="3" placeholder="Experience, goals, preferred days..."></textarea></div>
+        <button class="btn" type="submit" style="width:100%">Request a callback →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fl"><span class="mono" style="width:32px;height:32px;font-size:14px">AA</span><span>© 2026 Artem Artiukhov — boxing coach, Toronto.<br>Design concept by Konstantin Solutions.</span></div>
+    <span>Prototype: photos by Artem; prices, stats &amp; testimonials are placeholders.</span>
+  </div>
+</footer>
+
+<button id="chat-fab" aria-label="Chat">💬</button>
+<div id="chat" role="dialog" aria-label="Assistant">
+  <header>
+    <span class="av">AA</span>
+    <div><b>Artem's assistant</b><small>Replies instantly · concept demo</small></div>
+    <button id="chat-x" aria-label="Close">×</button>
+  </header>
+  <div id="msgs"></div>
+  <div class="chips" id="chips"></div>
+  <form id="chat-form"><input id="chat-in" placeholder="Ask about price, schedule..." autocomplete="off"><button class="btn" type="submit">Send</button></form>
+</div>
+
+<script>
+// nav
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+// mobile menu
+const mm=document.getElementById('mmenu');
+document.getElementById('burger').onclick=()=>mm.classList.add('open');
+mm.querySelector('.x').onclick=()=>mm.classList.remove('open');
+mm.querySelectorAll('a').forEach(a=>a.onclick=()=>mm.classList.remove('open'));
+// marquee (duplicated for seamless loop)
+const items=["15+ years experience","Master of Sports of Ukraine","Private 1-on-1 coaching","All levels welcome","Free trial session","Toronto"];
+const half=items.map(t=>`<span>${t}</span><span style="color:rgba(255,255,255,.5)">◆</span>`).join('');
+document.getElementById('mq').innerHTML=half+half;
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// chat
+const fab=document.getElementById('chat-fab'),chat=document.getElementById('chat'),msgs=document.getElementById('msgs');
+document.getElementById('chat-x').onclick=()=>chat.classList.remove('open');
+fab.onclick=()=>{chat.classList.toggle('open');if(chat.classList.contains('open')&&!msgs.children.length){typing(()=>add("Hey! I'm Artem's assistant (concept demo). Ask me about prices, schedule, or the free trial — or tap a topic below."));showChips();}};
+function add(t,me){const d=document.createElement('div');d.className='msg '+(me?'me':'bot');d.textContent=t;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;}
+function typing(done){const d=document.createElement('div');d.className='msg bot typing';d.innerHTML='<i></i><i></i><i></i>';msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;setTimeout(()=>{d.remove();done()},700);}
+function bot(t){typing(()=>add(t,false));}
+const brain=[
+  [/price|cost|much|pricing|\$/i,"Private 1-on-1 is $90/session (example price), the 10-session program is $800, small group is $40/session. The first trial is free — final prices confirmed with Artem."],
+  [/trial|free|first/i,"Your first session is free — an assessment of your level plus a personal plan, no commitment. Leave your number in the contact form and Artem will confirm a time."],
+  [/schedule|when|time|day|timetable/i,"Private sessions are booked individually around your availability. Group sessions run on a fixed weekly schedule — exact times confirmed on booking."],
+  [/where|location|address|gym/i,"Sessions are in Toronto — the exact gym address is shared when you book your trial."],
+  [/kid|teen|child|children|youth/i,"Yes — Artem trains teenagers. Mention the age when booking and we'll suggest group or private training."],
+  [/beginner|never|start|new/i,"Most students start from zero. The free trial covers stance and fundamentals, then we build your plan."],
+  [/bring|need|wear|equipment|gloves/i,"Workout clothes and indoor shoes for the trial — wraps and gloves are provided."],
+  [/compete|competition|fight|amateur/i,"Competition prep is a specialty: sparring strategy, conditioning blocks, and corner work on fight day."],
+  [/book|sign|appointment|contact|whatsapp|phone|instagram/i,"Easiest: the contact form below — Artem usually replies within a few hours. Or DM @artemartyukhov on Instagram."],
+  [/who|coach|artem|experience|about|method/i,"Artem Artiukhov — Master of Sports of Ukraine, 15+ years of experience, Master's Degree in Physical Education, developer of his own training method."],
+  [/hi|hello|hey/i,"Hey! Ask me about prices, schedule, the free trial, or training as a beginner."],
+];
+document.getElementById('chat-form').onsubmit=e=>{e.preventDefault();const inp=document.getElementById('chat-in');const t=inp.value.trim();if(!t)return;add(t,true);inp.value='';let r="For details like that, leave your number in the contact form — Artem will answer personally.";for(const[re,ans]of brain){if(re.test(t)){r=ans;break;}}bot(r);};
+function showChips(){const c=document.getElementById('chips');["Prices","Free trial","Schedule","I'm a beginner"].forEach(t=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>{add(t,true);let r="";for(const[re,ans]of brain){if(re.test(t)){r=ans;break;}}bot(r||"Ask away!");};c.appendChild(b);});}
+// form
+document.getElementById('lead-form').onsubmit=e=>{e.preventDefault();document.getElementById('form-ok').style.display='block';e.target.querySelectorAll('input,textarea,select').forEach(el=>el.disabled=true);};
+</script>
+</body>
+</html>
