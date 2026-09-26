@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Link from "next/link"
@@ -13,6 +13,11 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   title: "Konstantin Solutions — AI Chatbots & Python Automation",
@@ -32,7 +37,7 @@ export const metadata: Metadata = {
   },
 };
 
-const container = "mx-auto max-x-7xl px-6";
+const container = "mx-auto max-w-7xl px-6";
 
 export default function RootLayout({
   children,
