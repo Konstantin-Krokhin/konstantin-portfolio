@@ -80,7 +80,7 @@ export default function RootLayout({
           </div>
         </header>
 
-        <main className={`${container} py-12 flex-1`}>
+        <main className={`${container} min-w-0 py-12 flex-1`}>
           {children}
         </main>
 
