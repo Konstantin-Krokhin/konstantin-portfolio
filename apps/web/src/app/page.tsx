@@ -160,7 +160,7 @@ export default function HomePage() {
             Konstantin Solutions · Toronto, Canada
           </p>
 
-          <h1 className="mx-auto mt-4 max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+          <h1 className="mx-auto mt-4 max-w-4xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl sm:leading-[1.05]">
             AI chatbots that{" "}
             <span className="text-gradient">answer your customers</span>.
             <span className="mt-2 block">
@@ -207,16 +207,16 @@ export default function HomePage() {
             </a>
           </p>
 
-          <dl className="mx-auto mt-12 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-3">
+          <dl className="mx-auto mt-10 grid max-w-3xl grid-cols-3 gap-3 sm:mt-12 sm:gap-6">
             {[
               { v: "7+", l: "years of production experience" },
               { v: "15", l: "live prototypes you can try now" },
               { v: "GTA", l: "based in Toronto, serving local businesses" },
             ].map((s) => (
-              <div key={s.l} className="rounded-2xl border border-white/10 bg-white/[0.02] px-4 py-5">
+              <div key={s.l} className="rounded-2xl border border-white/10 bg-white/[0.02] px-2 py-4 sm:px-4 sm:py-5">
                 <dt className="sr-only">{s.l}</dt>
-                <dd className="text-3xl font-bold text-gradient">{s.v}</dd>
-                <dd className="mt-1 text-xs leading-snug text-zinc-500">{s.l}</dd>
+                <dd className="text-gradient text-2xl font-bold sm:text-3xl">{s.v}</dd>
+                <dd className="mt-1 text-[11px] leading-snug text-zinc-500 sm:text-xs">{s.l}</dd>
               </div>
             ))}
           </dl>
@@ -224,7 +224,7 @@ export default function HomePage() {
 
         {/* ============ TRUST STRIP ============ */}
         <section className="border-y border-white/10 py-5">
-          <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm text-zinc-300">
+          <ul className="flex flex-col items-center gap-3 text-sm text-zinc-300 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-10 sm:gap-y-3">
             {[
               "Working prototype before you pay",
               "Fixed, transparent pricing",
@@ -241,7 +241,7 @@ export default function HomePage() {
         </section>
 
         {/* ============ SERVICES ============ */}
-        <section id="services" className="scroll-mt-24 py-20">
+        <section id="services" className="scroll-mt-24 py-14 sm:py-20">
           <p className={eyebrow}>Services</p>
           <h2 className={h2}>
             Fixed-price services, <span className="text-gradient">no surprises</span>
@@ -292,7 +292,7 @@ export default function HomePage() {
         </section>
 
         {/* ============ HOW IT WORKS ============ */}
-        <section className="border-t border-white/10 py-20">
+        <section className="border-t border-white/10 py-14 sm:py-20">
           <p className={eyebrow}>Process</p>
           <h2 className={h2}>
             From idea to live in <span className="text-gradient">three steps</span>
@@ -316,7 +316,7 @@ export default function HomePage() {
         </section>
 
         {/* ============ DEMOS ============ */}
-        <section id="demos" className="scroll-mt-24 border-t border-white/10 py-20">
+        <section id="demos" className="scroll-mt-24 border-t border-white/10 py-14 sm:py-20">
           <p className={eyebrow}>Demos</p>
           <h2 className={h2}>
             Try the <span className="text-gradient">prototypes</span>
@@ -336,7 +336,7 @@ export default function HomePage() {
         </section>
 
         {/* ============ CONTACT ============ */}
-        <section id="contact" className="scroll-mt-24 border-t border-white/10 py-20">
+        <section id="contact" className="scroll-mt-24 border-t border-white/10 py-14 sm:py-20">
           <p className={eyebrow}>Contact</p>
           <h2 className={h2}>
             Let&apos;s build something <span className="text-gradient">useful</span>

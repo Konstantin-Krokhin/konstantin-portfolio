@@ -2,7 +2,7 @@
 
 export function PayButton({ priceId }: { priceId: string }) {
 	return (
-		<div className="mt-4 flex gap-3">
+		<div>
 			<button
 				type="button"
 				onClick={async () => {
@@ -17,7 +17,7 @@ export function PayButton({ priceId }: { priceId: string }) {
 					const { url } = await res.json();
 					window.location.assign(url);
 				}}
-				className="rounded-lg border px-10 py-2 transition hover:border-zinc-700 hover:bg-zinc-900 hover:text-white">
+				className="block w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-center text-sm font-medium text-zinc-100 transition hover:border-white/30 hover:bg-white/10">
 					Pay
 				</button>
 			</div>
