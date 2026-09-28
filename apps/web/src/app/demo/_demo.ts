@@ -115,4 +115,44 @@ export const prototypeDemos: PrototypeDemo[] = [
       "Instant example estimate by subject and grade, plus free trial class booking.",
     url: "https://muse.ai/s/tutoring-quote-and-trial-booking-demo-jp6kuxnxq0dxa9",
   },
+  // TODO (2026-09-28): paste the 5 public muse.ai/s/ share URLs below after
+  // Konstantin gives one-tap publish approval for each artifact in his app.
+  // Artifacts cannot be published programmatically. Slugs:
+  // realtor-lead-intake-demo, auto-repair-intake-demo, auto-glass-estimate-demo,
+  // pilates-class-triage-demo, dance-studio-matcher-demo.
+  {
+    title: "Realtor lead-intake chatbot",
+    tag: "AI chatbot",
+    blurb:
+      "Buyer/seller/renter triage with budget, timeline, and pre-approval captured into a structured consult request.",
+    url: "",
+  },
+  {
+    title: "Auto-repair appointment intake",
+    tag: "Booking automation",
+    blurb:
+      "Vehicle, symptom picker, and service details collected into an appointment request.",
+    url: "",
+  },
+  {
+    title: "Auto-glass estimate assistant",
+    tag: "Quote automation",
+    blurb:
+      "Glass and damage triage with an instant example estimate and quote request.",
+    url: "",
+  },
+  {
+    title: "Pilates class triage bot",
+    tag: "AI chatbot",
+    blurb:
+      "Experience quiz and injury check routing newcomers to a group level or private sessions.",
+    url: "",
+  },
+  {
+    title: "Dance-studio class matcher",
+    tag: "AI chatbot",
+    blurb:
+      "Goals and experience matched to a consultation or beginner course plus a style pick.",
+    url: "",
+  },
 ];
