@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getVercelOidcToken } from "@vercel/oidc";
 
 /**
  * Site chat API — streams answers from Qwen via Vercel AI Gateway.
  *
- * Auth: on Vercel the gateway accepts the runtime OIDC token, so no API key
- * is needed in production. For local dev you can set AI_GATEWAY_API_KEY.
+ * Auth: on Vercel we mint a short-lived OIDC token per request, so no API key
+ * is stored anywhere. For local dev you can set AI_GATEWAY_API_KEY.
  * Vercel AI Gateway includes $5 of free credits per month, which at Qwen's
  * pricing covers far more traffic than this site gets.
  */
@@ -73,6 +74,20 @@ function isValidMessages(value: unknown): value is IncomingMessage[] {
   );
 }
 
+/**
+ * Resolve the AI Gateway credential.
+ * On Vercel, mint a short-lived OIDC token (no stored secrets, auto-refreshed).
+ * Locally, fall back to AI_GATEWAY_API_KEY, then VERCEL_OIDC_TOKEN from `vercel env pull`.
+ */
+async function getGatewayToken(): Promise<string | null> {
+  if (process.env.AI_GATEWAY_API_KEY) return process.env.AI_GATEWAY_API_KEY;
+  try {
+    return await getVercelOidcToken();
+  } catch {
+    return process.env.VERCEL_OIDC_TOKEN || null;
+  }
+}
+
 export async function POST(req: NextRequest) {
   const ip =
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
@@ -103,7 +118,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid messages." }, { status: 400 });
   }
 
-  const token = process.env.VERCEL_OIDC_TOKEN || process.env.AI_GATEWAY_API_KEY;
+  const token = await getGatewayToken();
   if (!token) {
     return NextResponse.json(
       { error: "Chat is not configured yet. Please use the contact form below." },
