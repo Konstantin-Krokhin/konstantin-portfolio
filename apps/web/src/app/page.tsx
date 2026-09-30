@@ -150,7 +150,20 @@ export default function HomePage() {
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         {/* ============ HERO ============ */}
-        <section className="pb-16 pt-14 text-center sm:pt-20">
+        <section className="relative overflow-hidden rounded-3xl border border-white/10 pb-16 pt-14 text-center sm:pt-20">
+          <video
+            aria-hidden
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-40"
+          >
+            <source src="/videos/hero-chat-loop.mp4" type="video/mp4" />
+          </video>
+          <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-[#05070d]/70 via-[#05070d]/55 to-[#05070d]" />
+          <div className="relative px-5 sm:px-8">
           <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-1.5 text-xs font-medium text-emerald-300">
             <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
             Available for new projects
@@ -220,6 +233,7 @@ export default function HomePage() {
               </div>
             ))}
           </dl>
+          </div>
         </section>
 
         {/* ============ TRUST STRIP ============ */}

@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Link from "next/link"
 import BusinessDetails from "@/components/BusinessDetails"
+import SiteChat from "@/components/SiteChat"
 import { professionalServiceJsonLd } from "@/content/jsonld";
 
 const geistSans = localFont({
@@ -96,6 +97,7 @@ export default function RootLayout({
           </div>
         </footer>
 
+        <SiteChat />
       </body>
     </html>
   );
