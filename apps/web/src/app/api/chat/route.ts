@@ -10,7 +10,7 @@ import { getVercelOidcToken } from "@vercel/oidc";
  * pricing covers far more traffic than this site gets.
  */
 const GATEWAY_URL = "https://ai-gateway.vercel.sh/v1/chat/completions";
-const MODEL = "qwen/qwen-3-32b";
+const MODEL = "alibaba/qwen-3-32b";
 
 const SYSTEM_PROMPT = [
   "You are the website assistant for Konstantin Solutions, a Toronto business run by Konstantin Krokhin,",
