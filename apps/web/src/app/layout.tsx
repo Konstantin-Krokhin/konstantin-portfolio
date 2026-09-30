@@ -52,6 +52,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceJsonLd) }}
         />
+        <script defer src="/_vercel/insights/script.js" />
       </head>
       <body
         className={[
