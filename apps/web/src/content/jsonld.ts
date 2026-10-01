@@ -35,6 +35,8 @@ export const professionalServiceJsonLd = {
   email: BUSINESS.email,
   telephone: BUSINESS.phoneE164,
   areaServed: [
+    { "@type": "City", name: "Toronto" },
+    { "@type": "Place", name: "Greater Toronto Area" },
     { "@type": "Country", name: "Canada" },
     { "@type": "Place", name: "International (Remote)" }
   ],

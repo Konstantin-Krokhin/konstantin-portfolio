@@ -21,10 +21,11 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Konstantin Solutions — AI Chatbots & Python Automation",
-  description: "AI chatbots and Python automation for Canadian businesses.",
+  title: "AI Chatbots & Python Automation in Toronto | Konstantin Solutions",
+  description:
+    "Toronto-based developer building AI chatbots and Python automation for small businesses. Working prototype first — see the value before you pay.",
   openGraph: {
-    title: "Konstantin Solutions — AI Chatbots & Python Automation",
+    title: "AI Chatbots & Python Automation in Toronto | Konstantin Solutions",
     description:
       "I build chatbots and Python automation for small businesses in the GTA — working prototype first, so you see the value before you pay.",
     url: "https://k-solutions.tech",
@@ -33,8 +34,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Konstantin Solutions — AI Chatbots & Python Automation",
-    description: "AI chatbots and Python automation for Canadian businesses.",
+    title: "AI Chatbots & Python Automation in Toronto | Konstantin Solutions",
+    description:
+      "Toronto-based developer building AI chatbots and Python automation for small businesses. Working prototype first.",
   },
 };
 
