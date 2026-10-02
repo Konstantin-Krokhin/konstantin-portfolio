@@ -88,7 +88,7 @@ const services: Service[] = [
     description:
       "30-45 min call + quick technical review (speed, SEO basics, conversion). You get a short action plan.",
     bookingUrl: "https://cal.com/konstantinkrokhin/website-audit",
-    stripePriceId: "price_1UJdoDRvTRY7ZoKSJ3hOYnJF",
+    stripePriceId: "price_1UM8YU2MrLg1cB9viV5QoKBj",
   },
   {
     id: "bugfix-session",
@@ -97,7 +97,7 @@ const services: Service[] = [
     description:
       "60 min hands-on session. Fix 1-2 urgent issues (deploy, CSS, forms, tracking, minor backend fixes).",
     bookingUrl: "https://cal.com/konstantinkrokhin/bugfix-session",
-    stripePriceId: "price_1UJdnHRvTRY7ZoKSEHXBS9gk",
+    stripePriceId: "price_1UM8YU2MrLg1cB9veerXrH9N",
   },
   {
     id: "landing-page-build",
@@ -106,7 +106,7 @@ const services: Service[] = [
     description:
       "High-converting landing page + analytics + basic SEO + deployment. Normally 2-3 days turnaround.",
     bookingUrl: "https://cal.com/konstantinkrokhin/landing-page-build",
-    stripePriceId: "price_1UJdmdRvTRY7ZoKSTUrpUcp0",
+    stripePriceId: "price_1UM8YU2MrLg1cB9vlO8A5tvL",
   },
 ];
 
