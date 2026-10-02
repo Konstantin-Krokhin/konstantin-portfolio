@@ -5,6 +5,7 @@ import Link from "next/link"
 import BusinessDetails from "@/components/BusinessDetails"
 import SiteChat from "@/components/SiteChat"
 import { professionalServiceJsonLd } from "@/content/jsonld";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -54,7 +55,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceJsonLd) }}
         />
-        <script defer src="/_vercel/insights/script.js" />
       </head>
       <body
         className={[
@@ -101,6 +101,7 @@ export default function RootLayout({
         </footer>
 
         <SiteChat />
+        <Analytics />
       </body>
     </html>
   );
