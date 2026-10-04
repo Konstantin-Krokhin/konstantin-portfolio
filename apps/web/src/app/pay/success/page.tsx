@@ -6,12 +6,13 @@ export const metadata = {
   description: "Your payment went through. Here are the next steps.",
 };
 
-export default function PaySuccess({
+export default async function PaySuccess({
   searchParams,
 }: {
-  searchParams: { service?: string };
+  searchParams: Promise<{ service?: string }>;
 }) {
-  const service = SERVICE_BY_ID[searchParams.service ?? ""] ?? null;
+  const { service: serviceId } = await searchParams;
+  const service = SERVICE_BY_ID[serviceId ?? ""] ?? null;
 
   return (
     <main className="mx-auto max-w-2xl px-6 py-20 text-center">
