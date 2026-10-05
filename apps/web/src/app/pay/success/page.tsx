@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { SERVICE_BY_ID } from "@/lib/services";
 
+// Must render per-request: the service comes from the ?service= query param,
+// which is empty at build time (would bake in the generic fallback forever).
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Payment successful | Konstantin Solutions",
   description: "Your payment went through. Here are the next steps.",
